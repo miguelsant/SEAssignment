@@ -1,7 +1,13 @@
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\TradersMarket.dll
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\TradersMarket.pdb
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\BusinessLayer.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\Common.dll
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\EntityFramework.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\BusinessLayer.pdb
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\Common.pdb
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\EntityFramework.xml
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\obj\Debug\TradersMarket.csprojResolveAssemblyReference.cache
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\obj\Debug\TradersMarket.dll
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\obj\Debug\TradersMarket.pdb
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\DataAccess.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\DataAccess.pdb

@@ -1,4 +1,9 @@
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\BusinessLayer\bin\Debug\BusinessLayer.dll
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\BusinessLayer\bin\Debug\BusinessLayer.pdb
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\BusinessLayer\bin\Debug\Common.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\BusinessLayer\bin\Debug\DataAccess.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\BusinessLayer\bin\Debug\Common.pdb
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\BusinessLayer\bin\Debug\DataAccess.pdb
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\BusinessLayer\obj\Debug\BusinessLayer.dll
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\BusinessLayer\obj\Debug\BusinessLayer.pdb
