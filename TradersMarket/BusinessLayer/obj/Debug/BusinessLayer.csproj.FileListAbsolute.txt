@@ -1,0 +1,4 @@
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\BusinessLayer\bin\Debug\BusinessLayer.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\BusinessLayer\bin\Debug\BusinessLayer.pdb
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\BusinessLayer\obj\Debug\BusinessLayer.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\BusinessLayer\obj\Debug\BusinessLayer.pdb

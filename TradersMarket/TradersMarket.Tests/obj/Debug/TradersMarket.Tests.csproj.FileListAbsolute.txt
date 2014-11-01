@@ -1,0 +1,8 @@
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\TradersMarket.Tests.dll.config
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\TradersMarket.Tests.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\TradersMarket.Tests.pdb
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\TradersMarket.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\TradersMarket.pdb
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\obj\Debug\TradersMarket.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\obj\Debug\TradersMarket.Tests.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\obj\Debug\TradersMarket.Tests.pdb

@@ -1,0 +1,4 @@
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\DataAccess\obj\Debug\DataAccess.pdb
