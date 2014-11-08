@@ -73,7 +73,7 @@ namespace TradersMarket.Controllers
         // POST: /Account/Register
 
         [HttpPost]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register(RegisterUserMod model)
         {
             if (ModelState.IsValid)
             {

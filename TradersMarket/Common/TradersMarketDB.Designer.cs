@@ -19,7 +19,12 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "UserRole", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.Role), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.User))]
+[assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_RolePermission_Permission", "Permission", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Permission), "RolePermission", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.RolePermission), true)]
+[assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_Product_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.User), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.Product), true)]
+[assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_RolePermission_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Role), "RolePermission", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.RolePermission), true)]
+[assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_UserRole_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Role), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.UserRole), true)]
+[assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_User_Town", "Town", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Town), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.User), true)]
+[assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_UserRole_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.User), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.UserRole), true)]
 
 #endregion
 
@@ -74,6 +79,38 @@ namespace Common
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<sysdiagram> sysdiagrams
+        {
+            get
+            {
+                if ((_sysdiagrams == null))
+                {
+                    _sysdiagrams = base.CreateObjectSet<sysdiagram>("sysdiagrams");
+                }
+                return _sysdiagrams;
+            }
+        }
+        private ObjectSet<sysdiagram> _sysdiagrams;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Permission> Permissions
+        {
+            get
+            {
+                if ((_Permissions == null))
+                {
+                    _Permissions = base.CreateObjectSet<Permission>("Permissions");
+                }
+                return _Permissions;
+            }
+        }
+        private ObjectSet<Permission> _Permissions;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Product> Products
         {
             get
@@ -106,18 +143,34 @@ namespace Common
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<sysdiagram> sysdiagrams
+        public ObjectSet<RolePermission> RolePermissions
         {
             get
             {
-                if ((_sysdiagrams == null))
+                if ((_RolePermissions == null))
                 {
-                    _sysdiagrams = base.CreateObjectSet<sysdiagram>("sysdiagrams");
+                    _RolePermissions = base.CreateObjectSet<RolePermission>("RolePermissions");
                 }
-                return _sysdiagrams;
+                return _RolePermissions;
             }
         }
-        private ObjectSet<sysdiagram> _sysdiagrams;
+        private ObjectSet<RolePermission> _RolePermissions;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Town> Towns
+        {
+            get
+            {
+                if ((_Towns == null))
+                {
+                    _Towns = base.CreateObjectSet<Town>("Towns");
+                }
+                return _Towns;
+            }
+        }
+        private ObjectSet<Town> _Towns;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -134,10 +187,42 @@ namespace Common
             }
         }
         private ObjectSet<User> _Users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<UserRole> UserRoles
+        {
+            get
+            {
+                if ((_UserRoles == null))
+                {
+                    _UserRoles = base.CreateObjectSet<UserRole>("UserRoles");
+                }
+                return _UserRoles;
+            }
+        }
+        private ObjectSet<UserRole> _UserRoles;
 
         #endregion
 
         #region AddTo Methods
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the sysdiagrams EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTosysdiagrams(sysdiagram sysdiagram)
+        {
+            base.AddObject("sysdiagrams", sysdiagram);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Permissions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPermissions(Permission permission)
+        {
+            base.AddObject("Permissions", permission);
+        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the Products EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -156,11 +241,19 @@ namespace Common
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the sysdiagrams EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the RolePermissions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddTosysdiagrams(sysdiagram sysdiagram)
+        public void AddToRolePermissions(RolePermission rolePermission)
         {
-            base.AddObject("sysdiagrams", sysdiagram);
+            base.AddObject("RolePermissions", rolePermission);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Towns EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTowns(Town town)
+        {
+            base.AddObject("Towns", town);
         }
     
         /// <summary>
@@ -170,6 +263,14 @@ namespace Common
         {
             base.AddObject("Users", user);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the UserRoles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUserRoles(UserRole userRole)
+        {
+            base.AddObject("UserRoles", userRole);
+        }
 
         #endregion
 
@@ -178,6 +279,139 @@ namespace Common
     #endregion
 
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TradersMarketplaceDBModel", Name="Permission")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Permission : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Permission object.
+        /// </summary>
+        /// <param name="permissionID">Initial value of the PermissionID property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static Permission CreatePermission(global::System.Int32 permissionID, global::System.String name)
+        {
+            Permission permission = new Permission();
+            permission.PermissionID = permissionID;
+            permission.Name = name;
+            return permission;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PermissionID
+        {
+            get
+            {
+                return _PermissionID;
+            }
+            set
+            {
+                if (_PermissionID != value)
+                {
+                    OnPermissionIDChanging(value);
+                    ReportPropertyChanging("PermissionID");
+                    _PermissionID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PermissionID");
+                    OnPermissionIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PermissionID;
+        partial void OnPermissionIDChanging(global::System.Int32 value);
+        partial void OnPermissionIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_RolePermission_Permission", "RolePermission")]
+        public EntityCollection<RolePermission> RolePermissions
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RolePermission>("TradersMarketplaceDBModel.FK_RolePermission_Permission", "RolePermission");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RolePermission>("TradersMarketplaceDBModel.FK_RolePermission_Permission", "RolePermission", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -196,13 +430,15 @@ namespace Common
         /// <param name="productName">Initial value of the ProductName property.</param>
         /// <param name="productDescription">Initial value of the ProductDescription property.</param>
         /// <param name="productImage">Initial value of the ProductImage property.</param>
-        public static Product CreateProduct(global::System.Int32 productID, global::System.String productName, global::System.String productDescription, global::System.String productImage)
+        /// <param name="username">Initial value of the Username property.</param>
+        public static Product CreateProduct(global::System.Int32 productID, global::System.String productName, global::System.String productDescription, global::System.String productImage, global::System.String username)
         {
             Product product = new Product();
             product.ProductID = productID;
             product.ProductName = productName;
             product.ProductDescription = productDescription;
             product.ProductImage = productImage;
+            product.Username = username;
             return product;
         }
 
@@ -308,10 +544,76 @@ namespace Common
         private global::System.String _ProductImage;
         partial void OnProductImageChanging(global::System.String value);
         partial void OnProductImageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Username
+        {
+            get
+            {
+                return _Username;
+            }
+            set
+            {
+                OnUsernameChanging(value);
+                ReportPropertyChanging("Username");
+                _Username = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Username");
+                OnUsernameChanged();
+            }
+        }
+        private global::System.String _Username;
+        partial void OnUsernameChanging(global::System.String value);
+        partial void OnUsernameChanged();
 
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_Product_User", "User")]
+        public User User
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("TradersMarketplaceDBModel.FK_Product_User", "User").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("TradersMarketplaceDBModel.FK_Product_User", "User").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<User> UserReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("TradersMarketplaceDBModel.FK_Product_User", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("TradersMarketplaceDBModel.FK_Product_User", "User", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -403,18 +705,229 @@ namespace Common
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "UserRole", "User")]
-        public EntityCollection<User> Users
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_RolePermission_Role", "RolePermission")]
+        public EntityCollection<RolePermission> RolePermissions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("TradersMarketplaceDBModel.UserRole", "User");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RolePermission>("TradersMarketplaceDBModel.FK_RolePermission_Role", "RolePermission");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("TradersMarketplaceDBModel.UserRole", "User", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RolePermission>("TradersMarketplaceDBModel.FK_RolePermission_Role", "RolePermission", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_UserRole_Role", "UserRole")]
+        public EntityCollection<UserRole> UserRoles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserRole>("TradersMarketplaceDBModel.FK_UserRole_Role", "UserRole");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserRole>("TradersMarketplaceDBModel.FK_UserRole_Role", "UserRole", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TradersMarketplaceDBModel", Name="RolePermission")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class RolePermission : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new RolePermission object.
+        /// </summary>
+        /// <param name="rolePermissionID">Initial value of the RolePermissionID property.</param>
+        /// <param name="roleID">Initial value of the RoleID property.</param>
+        /// <param name="permissionID">Initial value of the PermissionID property.</param>
+        public static RolePermission CreateRolePermission(global::System.Int32 rolePermissionID, global::System.Int32 roleID, global::System.Int32 permissionID)
+        {
+            RolePermission rolePermission = new RolePermission();
+            rolePermission.RolePermissionID = rolePermissionID;
+            rolePermission.RoleID = roleID;
+            rolePermission.PermissionID = permissionID;
+            return rolePermission;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RolePermissionID
+        {
+            get
+            {
+                return _RolePermissionID;
+            }
+            set
+            {
+                if (_RolePermissionID != value)
+                {
+                    OnRolePermissionIDChanging(value);
+                    ReportPropertyChanging("RolePermissionID");
+                    _RolePermissionID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("RolePermissionID");
+                    OnRolePermissionIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _RolePermissionID;
+        partial void OnRolePermissionIDChanging(global::System.Int32 value);
+        partial void OnRolePermissionIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RoleID
+        {
+            get
+            {
+                return _RoleID;
+            }
+            set
+            {
+                OnRoleIDChanging(value);
+                ReportPropertyChanging("RoleID");
+                _RoleID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RoleID");
+                OnRoleIDChanged();
+            }
+        }
+        private global::System.Int32 _RoleID;
+        partial void OnRoleIDChanging(global::System.Int32 value);
+        partial void OnRoleIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PermissionID
+        {
+            get
+            {
+                return _PermissionID;
+            }
+            set
+            {
+                OnPermissionIDChanging(value);
+                ReportPropertyChanging("PermissionID");
+                _PermissionID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PermissionID");
+                OnPermissionIDChanged();
+            }
+        }
+        private global::System.Int32 _PermissionID;
+        partial void OnPermissionIDChanging(global::System.Int32 value);
+        partial void OnPermissionIDChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_RolePermission_Permission", "Permission")]
+        public Permission Permission
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Permission>("TradersMarketplaceDBModel.FK_RolePermission_Permission", "Permission").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Permission>("TradersMarketplaceDBModel.FK_RolePermission_Permission", "Permission").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Permission> PermissionReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Permission>("TradersMarketplaceDBModel.FK_RolePermission_Permission", "Permission");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Permission>("TradersMarketplaceDBModel.FK_RolePermission_Permission", "Permission", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_RolePermission_Role", "Role")]
+        public Role Role
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("TradersMarketplaceDBModel.FK_RolePermission_Role", "Role").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("TradersMarketplaceDBModel.FK_RolePermission_Role", "Role").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Role> RoleReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("TradersMarketplaceDBModel.FK_RolePermission_Role", "Role");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Role>("TradersMarketplaceDBModel.FK_RolePermission_Role", "Role", value);
                 }
             }
         }
@@ -583,6 +1096,115 @@ namespace Common
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TradersMarketplaceDBModel", Name="Town")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Town : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Town object.
+        /// </summary>
+        /// <param name="townID">Initial value of the TownID property.</param>
+        /// <param name="townName">Initial value of the TownName property.</param>
+        public static Town CreateTown(global::System.Int32 townID, global::System.String townName)
+        {
+            Town town = new Town();
+            town.TownID = townID;
+            town.TownName = townName;
+            return town;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TownID
+        {
+            get
+            {
+                return _TownID;
+            }
+            set
+            {
+                if (_TownID != value)
+                {
+                    OnTownIDChanging(value);
+                    ReportPropertyChanging("TownID");
+                    _TownID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TownID");
+                    OnTownIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _TownID;
+        partial void OnTownIDChanging(global::System.Int32 value);
+        partial void OnTownIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TownName
+        {
+            get
+            {
+                return _TownName;
+            }
+            set
+            {
+                OnTownNameChanging(value);
+                ReportPropertyChanging("TownName");
+                _TownName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TownName");
+                OnTownNameChanged();
+            }
+        }
+        private global::System.String _TownName;
+        partial void OnTownNameChanging(global::System.String value);
+        partial void OnTownNameChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_User_Town", "User")]
+        public EntityCollection<User> Users
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("TradersMarketplaceDBModel.FK_User_Town", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("TradersMarketplaceDBModel.FK_User_Town", "User", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="TradersMarketplaceDBModel", Name="User")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -599,7 +1221,8 @@ namespace Common
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="surname">Initial value of the Surname property.</param>
         /// <param name="mobileNumber">Initial value of the MobileNumber property.</param>
-        public static User CreateUser(global::System.String username, global::System.String passwords, global::System.String email, global::System.String name, global::System.String surname, global::System.String mobileNumber)
+        /// <param name="townID">Initial value of the TownID property.</param>
+        public static User CreateUser(global::System.String username, global::System.String passwords, global::System.String email, global::System.String name, global::System.String surname, global::System.String mobileNumber, global::System.Int32 townID)
         {
             User user = new User();
             user.Username = username;
@@ -608,6 +1231,7 @@ namespace Common
             user.Name = name;
             user.Surname = surname;
             user.MobileNumber = mobileNumber;
+            user.TownID = townID;
             return user;
         }
 
@@ -761,6 +1385,30 @@ namespace Common
         private global::System.String _MobileNumber;
         partial void OnMobileNumberChanging(global::System.String value);
         partial void OnMobileNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TownID
+        {
+            get
+            {
+                return _TownID;
+            }
+            set
+            {
+                OnTownIDChanging(value);
+                ReportPropertyChanging("TownID");
+                _TownID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TownID");
+                OnTownIDChanged();
+            }
+        }
+        private global::System.Int32 _TownID;
+        partial void OnTownIDChanging(global::System.Int32 value);
+        partial void OnTownIDChanged();
 
         #endregion
 
@@ -773,18 +1421,267 @@ namespace Common
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "UserRole", "Role")]
-        public EntityCollection<Role> Roles
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_Product_User", "Product")]
+        public EntityCollection<Product> Products
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Role>("TradersMarketplaceDBModel.UserRole", "Role");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Product>("TradersMarketplaceDBModel.FK_Product_User", "Product");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Role>("TradersMarketplaceDBModel.UserRole", "Role", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Product>("TradersMarketplaceDBModel.FK_Product_User", "Product", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_User_Town", "Town")]
+        public Town Town
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Town>("TradersMarketplaceDBModel.FK_User_Town", "Town").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Town>("TradersMarketplaceDBModel.FK_User_Town", "Town").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Town> TownReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Town>("TradersMarketplaceDBModel.FK_User_Town", "Town");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Town>("TradersMarketplaceDBModel.FK_User_Town", "Town", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_UserRole_User", "UserRole")]
+        public EntityCollection<UserRole> UserRoles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserRole>("TradersMarketplaceDBModel.FK_UserRole_User", "UserRole");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserRole>("TradersMarketplaceDBModel.FK_UserRole_User", "UserRole", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TradersMarketplaceDBModel", Name="UserRole")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class UserRole : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new UserRole object.
+        /// </summary>
+        /// <param name="userRoleID">Initial value of the UserRoleID property.</param>
+        /// <param name="username">Initial value of the Username property.</param>
+        /// <param name="roleID">Initial value of the RoleID property.</param>
+        public static UserRole CreateUserRole(global::System.Int32 userRoleID, global::System.String username, global::System.Int32 roleID)
+        {
+            UserRole userRole = new UserRole();
+            userRole.UserRoleID = userRoleID;
+            userRole.Username = username;
+            userRole.RoleID = roleID;
+            return userRole;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserRoleID
+        {
+            get
+            {
+                return _UserRoleID;
+            }
+            set
+            {
+                if (_UserRoleID != value)
+                {
+                    OnUserRoleIDChanging(value);
+                    ReportPropertyChanging("UserRoleID");
+                    _UserRoleID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("UserRoleID");
+                    OnUserRoleIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _UserRoleID;
+        partial void OnUserRoleIDChanging(global::System.Int32 value);
+        partial void OnUserRoleIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Username
+        {
+            get
+            {
+                return _Username;
+            }
+            set
+            {
+                OnUsernameChanging(value);
+                ReportPropertyChanging("Username");
+                _Username = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Username");
+                OnUsernameChanged();
+            }
+        }
+        private global::System.String _Username;
+        partial void OnUsernameChanging(global::System.String value);
+        partial void OnUsernameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RoleID
+        {
+            get
+            {
+                return _RoleID;
+            }
+            set
+            {
+                OnRoleIDChanging(value);
+                ReportPropertyChanging("RoleID");
+                _RoleID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RoleID");
+                OnRoleIDChanged();
+            }
+        }
+        private global::System.Int32 _RoleID;
+        partial void OnRoleIDChanging(global::System.Int32 value);
+        partial void OnRoleIDChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_UserRole_Role", "Role")]
+        public Role Role
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("TradersMarketplaceDBModel.FK_UserRole_Role", "Role").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("TradersMarketplaceDBModel.FK_UserRole_Role", "Role").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Role> RoleReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("TradersMarketplaceDBModel.FK_UserRole_Role", "Role");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Role>("TradersMarketplaceDBModel.FK_UserRole_Role", "Role", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_UserRole_User", "User")]
+        public User User
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("TradersMarketplaceDBModel.FK_UserRole_User", "User").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("TradersMarketplaceDBModel.FK_UserRole_User", "User").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<User> UserReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("TradersMarketplaceDBModel.FK_UserRole_User", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("TradersMarketplaceDBModel.FK_UserRole_User", "User", value);
                 }
             }
         }

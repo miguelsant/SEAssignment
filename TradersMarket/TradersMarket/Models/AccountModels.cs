@@ -42,7 +42,7 @@ namespace TradersMarket.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterModel
+    public class RegisterUserMod
     {
         [Required]
         [Display(Name = "User name")]

@@ -32,7 +32,7 @@ namespace TradersMarket
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
+            //["LoggedIn"] = false;
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }

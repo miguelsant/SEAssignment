@@ -2,13 +2,13 @@ C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\TradersMarket.Tests.dll
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\TradersMarket.Tests.pdb
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\TradersMarket.dll
-C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\TradersMarket.pdb
-C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\obj\Debug\TradersMarket.Tests.csprojResolveAssemblyReference.cache
-C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\obj\Debug\TradersMarket.Tests.dll
-C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\obj\Debug\TradersMarket.Tests.pdb
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\BusinessLayer.dll
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\Common.dll
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\DataAccess.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\TradersMarket.pdb
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\BusinessLayer.pdb
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\Common.pdb
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\bin\Debug\DataAccess.pdb
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\obj\Debug\TradersMarket.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\obj\Debug\TradersMarket.Tests.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket.Tests\obj\Debug\TradersMarket.Tests.pdb
