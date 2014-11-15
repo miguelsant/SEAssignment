@@ -16,6 +16,26 @@ namespace BusinessLayer
 
         }
 
+        public void UpdateUserRole(UserRole r)
+        {
+            new UserRepository().UpdateUserRole(r);
+        }
+
+        public void UpdateUser(User us)
+        {
+            new UserRepository().UpdateUser(us);
+        }
+
+        public UserRole getUsersUserRole(string username)
+        {
+
+            return new UserRepository().getUsersUserRole(username);
+        }
+        public Role getRoleByID(int id)
+        {
+            return new UserRepository().getRoleById(id);
+        }
+
         public string getUserRole(string username)
         {
 

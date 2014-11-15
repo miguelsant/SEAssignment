@@ -32,19 +32,19 @@ namespace TradersMarket.Controllers
                 Session["Username"] = mod.username;
                 Session["LoggedIn"] = true;
                 //need to 
-                return View();
+                return View("Index");
             }
             else if (loginValue.ToString() == "InvalidCredentials")
             {
                 @ViewBag.LoggingInStatus = "Invalid Credentials";
             }
 
-            return View();
+            return View("Index");
         }
 
         public ActionResult RegisterNewUser()
         {
-            return View();
+            return View("Index");
         }
 
         [HttpPost]

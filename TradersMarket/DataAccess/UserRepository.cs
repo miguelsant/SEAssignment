@@ -16,6 +16,45 @@ namespace DataAccess
 
         }
 
+        public UserRole getUserRole(int userroleid)
+        {
+            UserRole usr = (from user in MarketplaceEntity.UserRoles
+                            where user.RoleID == userroleid
+                            select user).SingleOrDefault();
+            return usr;
+                            
+        }
+
+        public void UpdateUserRole(UserRole usr)
+        {
+            MarketplaceEntity.UserRoles.Attach(getUserRole(usr.UserRoleID));
+            MarketplaceEntity.UserRoles.ApplyCurrentValues(usr);
+            MarketplaceEntity.SaveChanges();
+        }
+
+        public void UpdateUser(User us)
+        {
+            MarketplaceEntity.Users.Attach(getUserByUsername(us.Username));
+            MarketplaceEntity.Users.ApplyCurrentValues(us);
+            MarketplaceEntity.SaveChanges();
+
+        }
+        public UserRole getUsersUserRole(string username)
+        {
+            UserRole r = (from userr in MarketplaceEntity.UserRoles
+                          where userr.Username == username
+                          select userr).SingleOrDefault();
+            return r;
+        }
+        public Role getRoleByID(int roleID)
+        {
+            Role r = (from role in MarketplaceEntity.Roles
+                      where role.RoleID == roleID
+                      select role).SingleOrDefault();
+            return r;
+        }
+
+
         public List<Role> getAllRoles()
         {
             List<Role> myRoles = ( from r in MarketplaceEntity.Roles

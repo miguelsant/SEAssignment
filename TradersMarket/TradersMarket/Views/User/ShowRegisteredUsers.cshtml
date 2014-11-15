@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ShowRegisteredUsers</h2>
+<h2>@ViewBag.StatusMessageDelete</h2>
 
 
 @if(ViewBag.RegisteredUsers != null)
@@ -20,6 +20,7 @@
     <tr><td><b>Town : </b><td>@Html.DisplayFor(model => item.TownName)</td></tr>
     </table>
     @Html.ActionLink("Delete User", "DeleteUser", new { username = item.Username }, "User")
+    @Html.ActionLink("Edit User", "UpdateUser", new { username = item.Username }, "User")
     <br />
     }
 }
