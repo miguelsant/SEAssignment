@@ -30,10 +30,27 @@ namespace DataAccess
             return myTowns;
         }
 
+        public UserRole getRoleByUsername(string username)
+        {
+            UserRole u = (from userrole in MarketplaceEntity.UserRoles
+                          where userrole.Username == username
+                          select userrole).SingleOrDefault();
+            return u;
+        }
+
         public void addUser(User u)
         {
             MarketplaceEntity.AddToUsers(u);
             MarketplaceEntity.SaveChanges();
+        }
+
+
+        public string getRoleName(int roleID)
+        {
+            string roleName = (from role in MarketplaceEntity.Roles
+                      where role.RoleID == roleID
+                      select role.RoleName).SingleOrDefault();
+            return roleName;
         }
 
         public User getUserByUsername(string username)
@@ -42,6 +59,15 @@ namespace DataAccess
                       where user.Username == username
                       select user).SingleOrDefault();
             return u;
+
+        }
+
+        public string getTownName(int townID)
+        {
+            Town twn = (from town in MarketplaceEntity.Towns
+                        where town.TownID == townID
+                        select town).SingleOrDefault();
+            return twn.TownName;
 
         }
 
@@ -60,6 +86,14 @@ namespace DataAccess
                                 select r).ToList();
             return roles;
 
+        }
+
+
+        public void DeleteUser(string username)
+        {
+            User userToDelete = getUserByUsername(username);
+            MarketplaceEntity.DeleteObject(userToDelete);
+            MarketplaceEntity.SaveChanges();
         }
 
         public Role getRoleById(int id)

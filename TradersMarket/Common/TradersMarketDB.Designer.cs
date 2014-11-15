@@ -22,8 +22,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_RolePermission_Permission", "Permission", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Permission), "RolePermission", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.RolePermission), true)]
 [assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_Product_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.User), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.Product), true)]
 [assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_RolePermission_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Role), "RolePermission", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.RolePermission), true)]
-[assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_UserRole_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Role), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.UserRole), true)]
 [assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_User_Town", "Town", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Town), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.User), true)]
+[assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_UserRole_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Role), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.UserRole), true)]
 [assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_UserRole_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.User), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.UserRole), true)]
 
 #endregion

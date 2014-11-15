@@ -100,7 +100,7 @@
     <Key>
       <PropertyRef Name="UserRoleID" />
     </Key>
-    <Property Name="UserRoleID" Type="int" Nullable="false" />
+    <Property Name="UserRoleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="RoleID" Type="int" Nullable="false" />
   </EntityType>

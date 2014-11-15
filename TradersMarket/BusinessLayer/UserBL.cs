@@ -16,6 +16,25 @@ namespace BusinessLayer
 
         }
 
+        public string getUserRole(string username)
+        {
+
+            UserRole rol = new UserRepository().getRoleByUsername(username);
+            string userroleName = new UserRepository().getRoleName(rol.RoleID);
+            return userroleName;
+        }
+
+        public void DeleteUser(string username)
+        {
+            new UserRepository().DeleteUser(username); 
+            
+        }
+
+        public string getTownName(int townID)
+        {
+            return new UserRepository().getTownName(townID);
+        }
+
         public List<Role> getAllRoles()
         {
             return new UserRepository().getAllRoles();

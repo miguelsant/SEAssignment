@@ -105,7 +105,7 @@
           <Key>
             <PropertyRef Name="UserRoleID" />
           </Key>
-          <Property Name="UserRoleID" Type="int" Nullable="false" />
+          <Property Name="UserRoleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="RoleID" Type="int" Nullable="false" />
         </EntityType>
@@ -193,7 +193,6 @@
           <EntitySet Name="RolePermissions" EntityType="TradersMarketplaceDBModel.RolePermission" />
           <EntitySet Name="Towns" EntityType="TradersMarketplaceDBModel.Town" />
           <EntitySet Name="Users" EntityType="TradersMarketplaceDBModel.User" />
-          <EntitySet Name="UserRoles" EntityType="TradersMarketplaceDBModel.UserRole" />
           <AssociationSet Name="FK_RolePermission_Permission" Association="TradersMarketplaceDBModel.FK_RolePermission_Permission">
             <End Role="Permission" EntitySet="Permissions" />
             <End Role="RolePermission" EntitySet="RolePermissions" />
@@ -206,13 +205,14 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="RolePermission" EntitySet="RolePermissions" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserRole_Role" Association="TradersMarketplaceDBModel.FK_UserRole_Role">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="UserRole" EntitySet="UserRoles" />
-          </AssociationSet>
           <AssociationSet Name="FK_User_Town" Association="TradersMarketplaceDBModel.FK_User_Town">
             <End Role="Town" EntitySet="Towns" />
             <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="UserRoles" EntityType="TradersMarketplaceDBModel.UserRole" />
+          <AssociationSet Name="FK_UserRole_Role" Association="TradersMarketplaceDBModel.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="UserRole" EntitySet="UserRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_UserRole_User" Association="TradersMarketplaceDBModel.FK_UserRole_User">
             <End Role="User" EntitySet="Users" />
@@ -291,16 +291,6 @@
           <NavigationProperty Name="Town" Relationship="TradersMarketplaceDBModel.FK_User_Town" FromRole="User" ToRole="Town" />
           <NavigationProperty Name="UserRoles" Relationship="TradersMarketplaceDBModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
         </EntityType>
-        <EntityType Name="UserRole">
-          <Key>
-            <PropertyRef Name="UserRoleID" />
-          </Key>
-          <Property Type="Int32" Name="UserRoleID" Nullable="false" />
-          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="RoleID" Nullable="false" />
-          <NavigationProperty Name="Role" Relationship="TradersMarketplaceDBModel.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
-          <NavigationProperty Name="User" Relationship="TradersMarketplaceDBModel.FK_UserRole_User" FromRole="UserRole" ToRole="User" />
-        </EntityType>
         <Association Name="FK_RolePermission_Permission">
           <End Type="TradersMarketplaceDBModel.Permission" Role="Permission" Multiplicity="1" />
           <End Type="TradersMarketplaceDBModel.RolePermission" Role="RolePermission" Multiplicity="*" />
@@ -337,18 +327,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserRole_Role">
-          <End Type="TradersMarketplaceDBModel.Role" Role="Role" Multiplicity="1" />
-          <End Type="TradersMarketplaceDBModel.UserRole" Role="UserRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="RoleID" />
-            </Principal>
-            <Dependent Role="UserRole">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_User_Town">
           <End Type="TradersMarketplaceDBModel.Town" Role="Town" Multiplicity="1" />
           <End Type="TradersMarketplaceDBModel.User" Role="User" Multiplicity="*" />
@@ -358,6 +336,28 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="TownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserRoleID" />
+          </Key>
+          <Property Type="Int32" Name="UserRoleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="TradersMarketplaceDBModel.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="TradersMarketplaceDBModel.FK_UserRole_User" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_UserRole_Role">
+          <End Type="TradersMarketplaceDBModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="TradersMarketplaceDBModel.UserRole" Role="UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -485,32 +485,32 @@
         <EntityTypeShape EntityType="TradersMarketplaceDBModel.RolePermission" Width="1.5" PointX="11.75" PointY="3.875" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="TradersMarketplaceDBModel.Town" Width="1.5" PointX="2.625" PointY="1" Height="1.5956835937500036" />
         <EntityTypeShape EntityType="TradersMarketplaceDBModel.User" Width="1.5" PointX="4.75" PointY="1" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="TradersMarketplaceDBModel.UserRole" Width="1.5" PointX="7.625" PointY="0.75" Height="1.9802864583333388" />
         <AssociationConnector Association="TradersMarketplaceDBModel.FK_RolePermission_Permission" >
           <ConnectorPoint PointX="12.5" PointY="6.5" />
           <ConnectorPoint PointX="12.5" PointY="5.8552864583333388" />
         </AssociationConnector>
         <AssociationConnector Association="TradersMarketplaceDBModel.FK_Product_User" >
-          <ConnectorPoint PointX="6.25" PointY="3.2713927291666693" />
-          <ConnectorPoint PointX="7.28125" PointY="3.2713927291666693" />
-          <ConnectorPoint PointX="7.28125" PointY="3.75" />
+          <ConnectorPoint PointX="6.25" PointY="2.3749995" />
+          <ConnectorPoint PointX="7.75" PointY="2.3749995" />
+          <ConnectorPoint PointX="7.75" PointY="3.75" />
         </AssociationConnector>
         <AssociationConnector Association="TradersMarketplaceDBModel.FK_RolePermission_Role" >
-          <ConnectorPoint PointX="10.75" PointY="4.7689925130208337" />
-          <ConnectorPoint PointX="11.75" PointY="4.7689925130208337" />
-        </AssociationConnector>
-        <AssociationConnector Association="TradersMarketplaceDBModel.FK_UserRole_Role" >
-          <ConnectorPoint PointX="10" PointY="3.875" />
-          <ConnectorPoint PointX="10" PointY="1.7401432291666694" />
-          <ConnectorPoint PointX="9.125" PointY="1.7401432291666694" />
+          <ConnectorPoint PointX="10.75" PointY="4.7689925130208328" />
+          <ConnectorPoint PointX="11.75" PointY="4.7689925130208328" />
         </AssociationConnector>
         <AssociationConnector Association="TradersMarketplaceDBModel.FK_User_Town" >
           <ConnectorPoint PointX="4.125" PointY="1.7978417968750016" />
           <ConnectorPoint PointX="4.75" PointY="1.7978417968750016" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="TradersMarketplaceDBModel.UserRole" Width="1.5" PointX="11.5" PointY="0.75" Height="1.9802864583333317" />
+        <AssociationConnector Association="TradersMarketplaceDBModel.FK_UserRole_Role" >
+          <ConnectorPoint PointX="10" PointY="3.875" />
+          <ConnectorPoint PointX="10" PointY="1.7401432291666659" />
+          <ConnectorPoint PointX="11.5" PointY="1.7401432291666659" />
+        </AssociationConnector>
         <AssociationConnector Association="TradersMarketplaceDBModel.FK_UserRole_User" >
-          <ConnectorPoint PointX="6.25" PointY="1.8651432291666694" />
-          <ConnectorPoint PointX="7.625" PointY="1.8651432291666694" />
+          <ConnectorPoint PointX="6.25" PointY="1.3075716145833329" />
+          <ConnectorPoint PointX="11.5" PointY="1.3075716145833329" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

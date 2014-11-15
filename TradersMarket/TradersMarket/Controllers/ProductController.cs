@@ -26,7 +26,7 @@ namespace TradersMarket.Controllers
         [HttpPost]
         public ActionResult AddProduct(ProductModel mod)
         {
-            mod.
+            
             return View();
         }
 

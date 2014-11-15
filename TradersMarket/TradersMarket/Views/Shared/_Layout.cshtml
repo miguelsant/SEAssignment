@@ -19,6 +19,22 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Product", "addProduct", "Product")</li>
+
+                    @{
+                        //if the user is logged in
+                        if(Session["Username"]!= null)
+                        {
+                        string username = Session["Username"].ToString();
+                        //check if the user is an admin
+                        string role = new BusinessLayer.UserBL().getUserRole(username);
+
+                        if (role == "Admin")
+                        {
+                        <li>@Html.ActionLink("User Management", "ShowRegisteredUsers", "User")</li>
+                        }
+                        }
+                    }
+                    
                 </ul>
             </div>
         </div>

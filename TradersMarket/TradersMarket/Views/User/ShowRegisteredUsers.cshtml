@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "ShowRegisteredUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ShowRegisteredUsers</h2>
+
+
+@if(ViewBag.RegisteredUsers != null)
+{
+    foreach (var item in ViewBag.RegisteredUsers as List<TradersMarket.Models.UserModel>)
+    {
+    <table>
+    <tr><td><b>Username : </b><td>@Html.DisplayFor(model => item.Username)</td></tr>
+    <tr><td><b>Password : </b><td>@Html.DisplayFor(model => item.Password)</td></tr>
+    <tr><td><b>Email : </b><td>@Html.DisplayFor(model => item.Email)</td></tr>
+    <tr><td><b>Name : </b><td>@Html.DisplayFor(model => item.Name)</td></tr>
+    <tr><td><b>Surname : </b><td>@Html.DisplayFor(model => item.Surname)</td></tr>
+    <tr><td><b>Mobile : </b><td>@Html.DisplayFor(model => item.Mobile)</td></tr>
+    <tr><td><b>Town : </b><td>@Html.DisplayFor(model => item.TownName)</td></tr>
+    </table>
+    @Html.ActionLink("Delete User", "DeleteUser", new { username = item.Username }, "User")
+    <br />
+    }
+}
+<hr />

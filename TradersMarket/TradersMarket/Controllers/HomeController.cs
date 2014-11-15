@@ -29,6 +29,7 @@ namespace TradersMarket.Controllers
 
             if (loginValue.ToString() == "ValidCredentials")
             {
+                Session["Username"] = mod.username;
                 Session["LoggedIn"] = true;
                 //need to 
                 return View();
