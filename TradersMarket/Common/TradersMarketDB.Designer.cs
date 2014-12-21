@@ -20,11 +20,11 @@ using System.Xml.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_RolePermission_Permission", "Permission", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Permission), "RolePermission", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.RolePermission), true)]
-[assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_Product_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.User), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.Product), true)]
 [assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_RolePermission_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Role), "RolePermission", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.RolePermission), true)]
 [assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_User_Town", "Town", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Town), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.User), true)]
 [assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_UserRole_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Role), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.UserRole), true)]
 [assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_UserRole_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.User), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.UserRole), true)]
+[assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_Product_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.User), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.Product), true)]
 
 #endregion
 
@@ -111,22 +111,6 @@ namespace Common
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Product> Products
-        {
-            get
-            {
-                if ((_Products == null))
-                {
-                    _Products = base.CreateObjectSet<Product>("Products");
-                }
-                return _Products;
-            }
-        }
-        private ObjectSet<Product> _Products;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Role> Roles
         {
             get
@@ -203,6 +187,22 @@ namespace Common
             }
         }
         private ObjectSet<UserRole> _UserRoles;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Product> Products
+        {
+            get
+            {
+                if ((_Products == null))
+                {
+                    _Products = base.CreateObjectSet<Product>("Products");
+                }
+                return _Products;
+            }
+        }
+        private ObjectSet<Product> _Products;
 
         #endregion
 
@@ -222,14 +222,6 @@ namespace Common
         public void AddToPermissions(Permission permission)
         {
             base.AddObject("Permissions", permission);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Products EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToProducts(Product product)
-        {
-            base.AddObject("Products", product);
         }
     
         /// <summary>
@@ -270,6 +262,14 @@ namespace Common
         public void AddToUserRoles(UserRole userRole)
         {
             base.AddObject("UserRoles", userRole);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Products EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToProducts(Product product)
+        {
+            base.AddObject("Products", product);
         }
 
         #endregion
@@ -568,6 +568,30 @@ namespace Common
         private global::System.String _Username;
         partial void OnUsernameChanging(global::System.String value);
         partial void OnUsernameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> Price
+        {
+            get
+            {
+                return _Price;
+            }
+            set
+            {
+                OnPriceChanging(value);
+                ReportPropertyChanging("Price");
+                _Price = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Price");
+                OnPriceChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _Price;
+        partial void OnPriceChanging(Nullable<global::System.Decimal> value);
+        partial void OnPriceChanged();
 
         #endregion
 
@@ -1421,28 +1445,6 @@ namespace Common
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_Product_User", "Product")]
-        public EntityCollection<Product> Products
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Product>("TradersMarketplaceDBModel.FK_Product_User", "Product");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Product>("TradersMarketplaceDBModel.FK_Product_User", "Product", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_User_Town", "Town")]
         public Town Town
         {
@@ -1493,6 +1495,28 @@ namespace Common
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserRole>("TradersMarketplaceDBModel.FK_UserRole_User", "UserRole", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_Product_User", "Product")]
+        public EntityCollection<Product> Products
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Product>("TradersMarketplaceDBModel.FK_Product_User", "Product");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Product>("TradersMarketplaceDBModel.FK_Product_User", "Product", value);
                 }
             }
         }

@@ -19,9 +19,12 @@ namespace TradersMarket.Models
         [Display(Name = "Description")]
         public string prodDescription { get; set; }
 
+
         [Required]
-        [DataType(DataType.ImageUrl)]
-        [Display(Name = "imageUrl")]
-        public string imageUrl { get; set; }
+        [StringLength(100, ErrorMessage = "Price must be at least 1", MinimumLength = 1)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Price")]
+        public string Price { get; set; }
+
     }
 }

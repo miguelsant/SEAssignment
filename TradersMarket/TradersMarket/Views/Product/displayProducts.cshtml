@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Common.Product>
+@{
+    ViewBag.Title = "displayProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>displayProducts</h2>
+@foreach (var item in Model)
+{
+
+    <div class="MainContainer">
+    <div class ="ImageContainer"><img src="@Html.DisplayFor(modelItem => item.ProductImage)" alt="" height='145px' width='145px'/></div>
+    <div class="productName">@Html.ActionLink(item.ProductName, "editProduct", "Product", new { id = item.ProductID }, "Product") </div>
+    <div class="productDescription">@Html.DisplayFor(modelItem => item.ProductDescription)
+    <div class="PriceArea">Price : @Html.DisplayFor(modelItem => item.Price)</div>
+    </div>
+    <div class="productAddedBy">Added by : @Html.DisplayFor(modelItem => item.Username)</div>
+    </div> 
+    <br />
+}

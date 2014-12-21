@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "ManageProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Select :</h2>
+
+<table>
+<td><tr>@Html.ActionLink("Delete Products", "DeleteProduct","Product")</tr></td>
+<td><tr>@Html.ActionLink("Edit Products", "displayProducts", "Product")</tr></td>
+<td><tr>@Html.ActionLink("Add Products", "AddProduct","Product")</tr></td>
+</table>
