@@ -5,6 +5,7 @@
     <EntitySet Name="Product" EntityType="TradersMarketplaceDBModel.Store.Product" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Role" EntityType="TradersMarketplaceDBModel.Store.Role" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RolePermission" EntityType="TradersMarketplaceDBModel.Store.RolePermission" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ShoppingCart" EntityType="TradersMarketplaceDBModel.Store.ShoppingCart" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="sysdiagrams" EntityType="TradersMarketplaceDBModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Town" EntityType="TradersMarketplaceDBModel.Store.Town" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User" EntityType="TradersMarketplaceDBModel.Store.User" store:Type="Tables" Schema="dbo" />
@@ -20,6 +21,14 @@
     <AssociationSet Name="FK_RolePermission_Role" Association="TradersMarketplaceDBModel.Store.FK_RolePermission_Role">
       <End Role="Role" EntitySet="Role" />
       <End Role="RolePermission" EntitySet="RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShoppingCart_Product" Association="TradersMarketplaceDBModel.Store.FK_ShoppingCart_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShoppingCart_User" Association="TradersMarketplaceDBModel.Store.FK_ShoppingCart_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ShoppingCart" EntitySet="ShoppingCart" />
     </AssociationSet>
     <AssociationSet Name="FK_User_Town" Association="TradersMarketplaceDBModel.Store.FK_User_Town">
       <End Role="Town" EntitySet="Town" />
@@ -52,6 +61,7 @@
     <Property Name="ProductImage" Type="nvarchar" Nullable="false" MaxLength="150" />
     <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Price" Type="decimal" Scale="2" />
+    <Property Name="Quantity" Type="int" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -67,6 +77,15 @@
     <Property Name="RolePermissionID" Type="int" Nullable="false" />
     <Property Name="RoleID" Type="int" Nullable="false" />
     <Property Name="PermissionID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ShoppingCart">
+    <Key>
+      <PropertyRef Name="ShoppingCartID" />
+    </Key>
+    <Property Name="ShoppingCartID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="ProductQuantity" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -140,6 +159,30 @@
       </Principal>
       <Dependent Role="RolePermission">
         <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShoppingCart_Product">
+    <End Role="Product" Type="TradersMarketplaceDBModel.Store.Product" Multiplicity="1" />
+    <End Role="ShoppingCart" Type="TradersMarketplaceDBModel.Store.ShoppingCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ShoppingCart">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShoppingCart_User">
+    <End Role="User" Type="TradersMarketplaceDBModel.Store.User" Multiplicity="1" />
+    <End Role="ShoppingCart" Type="TradersMarketplaceDBModel.Store.ShoppingCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Username" />
+      </Principal>
+      <Dependent Role="ShoppingCart">
+        <PropertyRef Name="Username" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -348,7 +348,6 @@ Product Styles
  height:150px;   
  border:1px solid black;
  float:left;
- margin-top:45px;
 }
 
 .productName
@@ -390,7 +389,46 @@ Product Styles
 
 
 
+.OuterContainer
+{
+ float:left;
+ width: 700px;
+ height: 160px;
+ border:1px solid black;
+}
+
+.ProdNameContainer
+{
+ float:left;
+ width: 300px;
+ height: 30px;
+ border:1px solid black;
+ 
+}
+
+.ProdQuantityContainer
+{
+    float :left;
+    width: 100px;
+    height: 30px;
+    text-align:center;
+    border:1px solid black;
+}
+
+.PriceContainer
+{
+    float :left;
+    width: 100px;
+    height: 30px;
+    text-align:center;
+    border:1px solid black;
+}
 
 
-
-
+.DescriptionProd
+{
+    float:left;
+    width: 400px;
+    height: 100px;
+    border:1px solid black;
+}

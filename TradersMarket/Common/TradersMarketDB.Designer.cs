@@ -25,6 +25,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_UserRole_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Role), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.UserRole), true)]
 [assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_UserRole_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.User), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.UserRole), true)]
 [assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_Product_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.User), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.Product), true)]
+[assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_ShoppingCart_Product", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.Product), "ShoppingCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.ShoppingCart), true)]
+[assembly: EdmRelationshipAttribute("TradersMarketplaceDBModel", "FK_ShoppingCart_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Common.User), "ShoppingCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Common.ShoppingCart), true)]
 
 #endregion
 
@@ -203,6 +205,22 @@ namespace Common
             }
         }
         private ObjectSet<Product> _Products;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ShoppingCart> ShoppingCarts
+        {
+            get
+            {
+                if ((_ShoppingCarts == null))
+                {
+                    _ShoppingCarts = base.CreateObjectSet<ShoppingCart>("ShoppingCarts");
+                }
+                return _ShoppingCarts;
+            }
+        }
+        private ObjectSet<ShoppingCart> _ShoppingCarts;
 
         #endregion
 
@@ -270,6 +288,14 @@ namespace Common
         public void AddToProducts(Product product)
         {
             base.AddObject("Products", product);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ShoppingCarts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToShoppingCarts(ShoppingCart shoppingCart)
+        {
+            base.AddObject("ShoppingCarts", shoppingCart);
         }
 
         #endregion
@@ -592,6 +618,30 @@ namespace Common
         private Nullable<global::System.Decimal> _Price;
         partial void OnPriceChanging(Nullable<global::System.Decimal> value);
         partial void OnPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Quantity
+        {
+            get
+            {
+                return _Quantity;
+            }
+            set
+            {
+                OnQuantityChanging(value);
+                ReportPropertyChanging("Quantity");
+                _Quantity = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Quantity");
+                OnQuantityChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Quantity;
+        partial void OnQuantityChanging(Nullable<global::System.Int32> value);
+        partial void OnQuantityChanged();
 
         #endregion
 
@@ -632,6 +682,28 @@ namespace Common
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("TradersMarketplaceDBModel.FK_Product_User", "User", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_ShoppingCart_Product", "ShoppingCart")]
+        public EntityCollection<ShoppingCart> ShoppingCarts
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ShoppingCart>("TradersMarketplaceDBModel.FK_ShoppingCart_Product", "ShoppingCart");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ShoppingCart>("TradersMarketplaceDBModel.FK_ShoppingCart_Product", "ShoppingCart", value);
                 }
             }
         }
@@ -952,6 +1024,221 @@ namespace Common
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Role>("TradersMarketplaceDBModel.FK_RolePermission_Role", "Role", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TradersMarketplaceDBModel", Name="ShoppingCart")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ShoppingCart : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ShoppingCart object.
+        /// </summary>
+        /// <param name="shoppingCartID">Initial value of the ShoppingCartID property.</param>
+        /// <param name="username">Initial value of the Username property.</param>
+        /// <param name="productID">Initial value of the ProductID property.</param>
+        /// <param name="productQuantity">Initial value of the ProductQuantity property.</param>
+        public static ShoppingCart CreateShoppingCart(global::System.Int32 shoppingCartID, global::System.String username, global::System.Int32 productID, global::System.Int32 productQuantity)
+        {
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.ShoppingCartID = shoppingCartID;
+            shoppingCart.Username = username;
+            shoppingCart.ProductID = productID;
+            shoppingCart.ProductQuantity = productQuantity;
+            return shoppingCart;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ShoppingCartID
+        {
+            get
+            {
+                return _ShoppingCartID;
+            }
+            set
+            {
+                if (_ShoppingCartID != value)
+                {
+                    OnShoppingCartIDChanging(value);
+                    ReportPropertyChanging("ShoppingCartID");
+                    _ShoppingCartID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ShoppingCartID");
+                    OnShoppingCartIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ShoppingCartID;
+        partial void OnShoppingCartIDChanging(global::System.Int32 value);
+        partial void OnShoppingCartIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Username
+        {
+            get
+            {
+                return _Username;
+            }
+            set
+            {
+                OnUsernameChanging(value);
+                ReportPropertyChanging("Username");
+                _Username = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Username");
+                OnUsernameChanged();
+            }
+        }
+        private global::System.String _Username;
+        partial void OnUsernameChanging(global::System.String value);
+        partial void OnUsernameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ProductID
+        {
+            get
+            {
+                return _ProductID;
+            }
+            set
+            {
+                OnProductIDChanging(value);
+                ReportPropertyChanging("ProductID");
+                _ProductID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProductID");
+                OnProductIDChanged();
+            }
+        }
+        private global::System.Int32 _ProductID;
+        partial void OnProductIDChanging(global::System.Int32 value);
+        partial void OnProductIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ProductQuantity
+        {
+            get
+            {
+                return _ProductQuantity;
+            }
+            set
+            {
+                OnProductQuantityChanging(value);
+                ReportPropertyChanging("ProductQuantity");
+                _ProductQuantity = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProductQuantity");
+                OnProductQuantityChanged();
+            }
+        }
+        private global::System.Int32 _ProductQuantity;
+        partial void OnProductQuantityChanging(global::System.Int32 value);
+        partial void OnProductQuantityChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_ShoppingCart_Product", "Product")]
+        public Product Product
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Product>("TradersMarketplaceDBModel.FK_ShoppingCart_Product", "Product").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Product>("TradersMarketplaceDBModel.FK_ShoppingCart_Product", "Product").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Product> ProductReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Product>("TradersMarketplaceDBModel.FK_ShoppingCart_Product", "Product");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Product>("TradersMarketplaceDBModel.FK_ShoppingCart_Product", "Product", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_ShoppingCart_User", "User")]
+        public User User
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("TradersMarketplaceDBModel.FK_ShoppingCart_User", "User").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("TradersMarketplaceDBModel.FK_ShoppingCart_User", "User").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<User> UserReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("TradersMarketplaceDBModel.FK_ShoppingCart_User", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("TradersMarketplaceDBModel.FK_ShoppingCart_User", "User", value);
                 }
             }
         }
@@ -1517,6 +1804,28 @@ namespace Common
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Product>("TradersMarketplaceDBModel.FK_Product_User", "Product", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TradersMarketplaceDBModel", "FK_ShoppingCart_User", "ShoppingCart")]
+        public EntityCollection<ShoppingCart> ShoppingCarts
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ShoppingCart>("TradersMarketplaceDBModel.FK_ShoppingCart_User", "ShoppingCart");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ShoppingCart>("TradersMarketplaceDBModel.FK_ShoppingCart_User", "ShoppingCart", value);
                 }
             }
         }

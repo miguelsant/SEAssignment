@@ -71,12 +71,23 @@
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="TradersMarketplaceDBModel.Product">
         <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
           <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
           <ScalarProperty Name="ProductName" ColumnName="ProductName" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShoppingCarts">
+      <EntityTypeMapping TypeName="TradersMarketplaceDBModel.ShoppingCart">
+        <MappingFragment StoreEntitySet="ShoppingCart">
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="ShoppingCartID" ColumnName="ShoppingCartID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

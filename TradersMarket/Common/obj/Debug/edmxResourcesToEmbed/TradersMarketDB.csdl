@@ -29,9 +29,18 @@
       <End Role="UserRole" EntitySet="UserRoles" />
     </AssociationSet>
     <EntitySet Name="Products" EntityType="TradersMarketplaceDBModel.Product" />
+    <EntitySet Name="ShoppingCarts" EntityType="TradersMarketplaceDBModel.ShoppingCart" />
     <AssociationSet Name="FK_Product_User" Association="TradersMarketplaceDBModel.FK_Product_User">
       <End Role="User" EntitySet="Users" />
       <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShoppingCart_Product" Association="TradersMarketplaceDBModel.FK_ShoppingCart_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShoppingCart_User" Association="TradersMarketplaceDBModel.FK_ShoppingCart_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="sysdiagram">
@@ -94,6 +103,7 @@
     <NavigationProperty Name="Town" Relationship="TradersMarketplaceDBModel.FK_User_Town" FromRole="User" ToRole="Town" />
     <NavigationProperty Name="UserRoles" Relationship="TradersMarketplaceDBModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
     <NavigationProperty Name="Products" Relationship="TradersMarketplaceDBModel.FK_Product_User" FromRole="User" ToRole="Product" />
+    <NavigationProperty Name="ShoppingCarts" Relationship="TradersMarketplaceDBModel.FK_ShoppingCart_User" FromRole="User" ToRole="ShoppingCart" />
   </EntityType>
   <Association Name="FK_RolePermission_Permission">
     <End Type="TradersMarketplaceDBModel.Permission" Role="Permission" Multiplicity="1" />
@@ -175,7 +185,20 @@
     <Property Type="String" Name="ProductImage" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="Decimal" Name="Price" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Quantity" />
     <NavigationProperty Name="User" Relationship="TradersMarketplaceDBModel.FK_Product_User" FromRole="Product" ToRole="User" />
+    <NavigationProperty Name="ShoppingCarts" Relationship="TradersMarketplaceDBModel.FK_ShoppingCart_Product" FromRole="Product" ToRole="ShoppingCart" />
+  </EntityType>
+  <EntityType Name="ShoppingCart">
+    <Key>
+      <PropertyRef Name="ShoppingCartID" />
+    </Key>
+    <Property Type="Int32" Name="ShoppingCartID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ProductID" Nullable="false" />
+    <Property Type="Int32" Name="ProductQuantity" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="TradersMarketplaceDBModel.FK_ShoppingCart_Product" FromRole="ShoppingCart" ToRole="Product" />
+    <NavigationProperty Name="User" Relationship="TradersMarketplaceDBModel.FK_ShoppingCart_User" FromRole="ShoppingCart" ToRole="User" />
   </EntityType>
   <Association Name="FK_Product_User">
     <End Type="TradersMarketplaceDBModel.User" Role="User" Multiplicity="1" />
@@ -185,6 +208,30 @@
         <PropertyRef Name="Username" />
       </Principal>
       <Dependent Role="Product">
+        <PropertyRef Name="Username" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShoppingCart_Product">
+    <End Type="TradersMarketplaceDBModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="TradersMarketplaceDBModel.ShoppingCart" Role="ShoppingCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ShoppingCart">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShoppingCart_User">
+    <End Type="TradersMarketplaceDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="TradersMarketplaceDBModel.ShoppingCart" Role="ShoppingCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Username" />
+      </Principal>
+      <Dependent Role="ShoppingCart">
         <PropertyRef Name="Username" />
       </Dependent>
     </ReferentialConstraint>

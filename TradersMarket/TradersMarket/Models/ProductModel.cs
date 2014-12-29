@@ -21,10 +21,17 @@ namespace TradersMarket.Models
 
 
         [Required]
-        [StringLength(100, ErrorMessage = "Price must be at least 1", MinimumLength = 1)]
+        [StringLength(50, ErrorMessage = "Price must be at least 1", MinimumLength = 1)]
         [DataType(DataType.Text)]
         [Display(Name = "Price")]
         public string Price { get; set; }
+
+
+        [Required]
+        [StringLength(100, ErrorMessage = "Must have at least 1 quantity", MinimumLength = 1)]
+        [DataType(DataType.Text)]
+        [Display(Name = "Quantity")]
+        public string Quantity { get; set; }
 
     }
 }

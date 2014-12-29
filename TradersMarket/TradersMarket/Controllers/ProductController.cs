@@ -54,6 +54,7 @@ namespace TradersMarket.Controllers
                 prod.ProductDescription = mod.prodDescription;
                 prod.ProductName = mod.prodName;
                 prod.ProductImage = dbPath;
+                prod.Quantity = Convert.ToInt32(mod.Quantity);
                 prod.Username = Session["Username"].ToString();
                 prod.Price = Convert.ToDecimal(mod.Price);
 
@@ -94,6 +95,23 @@ namespace TradersMarket.Controllers
         }
 
 
+
+
+        public ActionResult displayProductDetails(int id)
+        {
+            ProductBL bl = new ProductBL();
+            Product p = bl.getProductByID(id);
+            UpdateProductModel mod = new UpdateProductModel();
+            prodID = id;
+            imageURL = p.ProductImage;
+            mod.prodID = id.ToString();
+            mod.prodName = p.ProductName;
+            mod.prodDescription = p.ProductDescription;
+            mod.Price = p.Price.ToString();
+            mod.ImageURL = p.ProductImage;
+            mod.Quantity = p.Quantity.ToString();
+            return View(mod);
+        }
         
 
         
@@ -110,7 +128,7 @@ namespace TradersMarket.Controllers
             mod.prodDescription = p.ProductDescription;
             mod.Price = p.Price.ToString();
             mod.ImageURL = p.ProductImage;
-
+            mod.Quantity = p.Quantity.ToString();
             return View(mod);
 
         }
@@ -149,7 +167,7 @@ namespace TradersMarket.Controllers
                     prod.ProductImage = dbPath;
                     prod.Username = Session["Username"].ToString();
                     prod.Price = Convert.ToDecimal(mod.Price);
-
+                    prod.Quantity = Convert.ToInt32(mod.Quantity);
                     new ProductBL().updateProduct(prod);
 
                 }
@@ -173,7 +191,7 @@ namespace TradersMarket.Controllers
                 prod.ProductName = mod.prodName;
                 prod.Username = Session["Username"].ToString();
                 prod.Price = Convert.ToDecimal(mod.Price);
-
+                prod.Quantity = Convert.ToInt32(mod.Quantity);
                 new ProductBL().updateProduct(prod);
             }
 
