@@ -71,6 +71,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DisplayProductsModel.cs" />
     <Compile Include="Models\LoginUserModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
@@ -200,6 +201,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Product\displayProductDetails.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\displayCategories.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\displayCategoriesPost.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\ProductDetailsShow.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\AddToCart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\displayProductsInCart.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

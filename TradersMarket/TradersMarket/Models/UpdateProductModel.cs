@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace TradersMarket.Models
 {
@@ -44,6 +45,9 @@ namespace TradersMarket.Models
         [DataType(DataType.Text)]
         [Display(Name = "ImageURL")]
         public string ImageURL { get; set; }
+
+
+        public List<SelectListItem> ListCategory { get; set; }
 
     }
 }

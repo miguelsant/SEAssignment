@@ -1,0 +1,41 @@
+﻿@model TradersMarket.Models.UpdateProductModel
+
+@{
+    ViewBag.Title = "ProductDetailsShow";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ProductDetailsShow</h2>
+
+<fieldset>
+    <legend>UpdateProductModel</legend>
+
+    <div class="display-field">
+        <img src="@Html.DisplayFor(model => model.ImageURL)" width=300px height=300px />
+    </div>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.prodName)
+    </div>
+
+    <div class="display-label">prodDescription</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.prodDescription)
+    </div>
+
+    <div class="display-label">Quantity</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Quantity)
+    </div>
+
+    <div class="display-label">Price</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+
+</fieldset>
+<p>
+    @Html.ActionLink("Add to Cart", "AddToCart", new { id = Model.prodID }, "Product") |
+</p>

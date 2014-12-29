@@ -10,7 +10,28 @@ namespace DataAccess
     public class ProductRepository : ConnectionClass
     {
 
-        
+
+        public List<Product> getProductsByCategory(int catID)
+        {
+            List<Product> p = (from prod in MarketplaceEntity.Products
+                               where prod.CategoryID == catID
+                               select prod).ToList(); 
+            return p;
+
+        }
+
+        public List<Category> getAllCategories()
+        {
+            return (from cat in MarketplaceEntity.Categories
+                    select cat).ToList();
+        }
+
+        public Category getProductCategory(int id)
+        {
+            return (from cat in MarketplaceEntity.Categories
+                    where cat.CategoryID == id
+                    select cat).SingleOrDefault();
+        }
 
         public void addProduct(Product p)
         {

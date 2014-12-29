@@ -18,9 +18,9 @@
                 <ul id="menu">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Products", "displayProductDetails", "Product")</li>
+                    <li>@Html.ActionLink("Products", "displayCategories", "Product")</li>
                     <li>@Html.ActionLink("Manage Products", "ManageProducts", "Product")</li>
-
+                    <li>@Html.ActionLink("Cart", "displayProductsInCart", "Product")</li>
                     @{
                         //if the user is logged in
                         if(Session["Username"]!= null)

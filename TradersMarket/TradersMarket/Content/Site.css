@@ -391,6 +391,7 @@ Product Styles
 
 .OuterContainer
 {
+ margin-top:40px;
  float:left;
  width: 700px;
  height: 160px;

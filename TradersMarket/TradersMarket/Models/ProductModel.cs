@@ -26,6 +26,7 @@ namespace TradersMarket.Models
         [Display(Name = "Price")]
         public string Price { get; set; }
 
+        public int CategoryID { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "Must have at least 1 quantity", MinimumLength = 1)]

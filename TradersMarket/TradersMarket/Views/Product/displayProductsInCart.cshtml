@@ -1,0 +1,70 @@
+﻿@model List<Common.Product>
+@{
+    ViewBag.Title = "displayProductsInCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>displayProductsInCart</h2>
+
+
+@foreach (Common.Product prod in Model)
+{
+
+@*    <div class="MainContainer">
+    <div class ="ImageContainer"><img src="@Html.DisplayFor(modelItem => item.ProductImage)" alt="" height='145px' width='145px'/></div>
+    <div class="productName">@Html.ActionLink(item.ProductName, "editProduct", "Product", new { id = item.ProductID }, "Product") </div>
+    <div class="productDescription">@Html.DisplayFor(modelItem => item.ProductDescription)
+    <div class="PriceArea">Price : @Html.DisplayFor(modelItem => item.Price)</div>
+    </div>
+    <div class="productAddedBy">Added by : @Html.DisplayFor(modelItem => item.Username)</div>
+    </div> 
+    <br />*@
+    
+    
+    <div class = "OuterContainer">
+    <div class="ImageContainer"><img src="@Html.DisplayFor(modelItem => prod.ProductImage)" alt="" height='145px' width='145px'/></div>
+    <div class="ProdNameContainer">@Html.DisplayFor(modelItem => prod.ProductName)</div>
+    <div class="ProdQuantityContainer">@Html.ActionLink("Qty :" +prod.Quantity.ToString(), "editQuantity", "Product", new { id = prod.ProductID }, "Product")</div>
+    <div class="ProdQuantityContainer">Qty: @Html.DisplayFor(modelItem => prod.Quantity)</div>
+    <div class="PriceContainer">€ @Html.DisplayFor(modelItem => prod.Price)</div>
+    <div class="DescriptionProd">@Html.DisplayFor(modelItem => prod.ProductDescription)</div>
+    </div>
+    
+    <br />
+}
+<div style="clear:both"></div>
+
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+    <input type="hidden" name="cmd" value="_cart" />
+    <input type="hidden" name="upload" value="1">
+    <input type="hidden" name="business" value="miguel.sant@mcast.edu.mt" />
+    <input type="hidden" name="currency_code" value="EUR">
+
+    @{
+     int counter = 1;
+     string name = "item_name_";
+     string temp;
+     
+     string amount = "amount_";
+     string tempAmount;
+     foreach (Common.Product prod in Model)
+     {
+         temp = name + counter.ToString();
+         tempAmount = amount + counter.ToString();
+     <input type="hidden" name='@temp' value='@prod.ProductName'/>
+     <input type="hidden" name='@tempAmount' value='@prod.Price'/>
+         counter++;
+     } 
+        
+    }
+
+
+
+
+    <input type="submit" value="Pay with Paypal" />
+
+</form>
+
+

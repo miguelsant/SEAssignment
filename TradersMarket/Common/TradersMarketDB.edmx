@@ -6,6 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="TradersMarketplaceDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="TradersMarketplaceDBModelStoreContainer">
+          <EntitySet Name="Category" EntityType="TradersMarketplaceDBModel.Store.Category" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Permission" EntityType="TradersMarketplaceDBModel.Store.Permission" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Product" EntityType="TradersMarketplaceDBModel.Store.Product" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Role" EntityType="TradersMarketplaceDBModel.Store.Role" store:Type="Tables" Schema="dbo" />
@@ -15,6 +16,10 @@
           <EntitySet Name="Town" EntityType="TradersMarketplaceDBModel.Store.Town" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="TradersMarketplaceDBModel.Store.User" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserRole" EntityType="TradersMarketplaceDBModel.Store.UserRole" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Product_Category" Association="TradersMarketplaceDBModel.Store.FK_Product_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK_Product_User" Association="TradersMarketplaceDBModel.Store.FK_Product_User">
             <End Role="User" EntitySet="User" />
             <End Role="Product" EntitySet="Product" />
@@ -48,6 +53,13 @@
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Permission">
           <Key>
             <PropertyRef Name="PermissionID" />
@@ -67,6 +79,7 @@
           <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Price" Type="decimal" Scale="2" />
           <Property Name="Quantity" Type="int" />
+          <Property Name="CategoryID" Type="int" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -129,6 +142,18 @@
           <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="RoleID" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Product_Category">
+          <End Role="Category" Type="TradersMarketplaceDBModel.Store.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="TradersMarketplaceDBModel.Store.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_User">
           <End Role="User" Type="TradersMarketplaceDBModel.Store.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -261,18 +286,23 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserRole" EntitySet="UserRoles" />
           </AssociationSet>
-          <EntitySet Name="Products" EntityType="TradersMarketplaceDBModel.Product" />
           <EntitySet Name="ShoppingCarts" EntityType="TradersMarketplaceDBModel.ShoppingCart" />
+          <AssociationSet Name="FK_ShoppingCart_User" Association="TradersMarketplaceDBModel.FK_ShoppingCart_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
+          </AssociationSet>
+          <EntitySet Name="Categories" EntityType="TradersMarketplaceDBModel.Category" />
+          <EntitySet Name="Products" EntityType="TradersMarketplaceDBModel.Product" />
+          <AssociationSet Name="FK_Product_Category" Association="TradersMarketplaceDBModel.FK_Product_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
           <AssociationSet Name="FK_Product_User" Association="TradersMarketplaceDBModel.FK_Product_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="FK_ShoppingCart_Product" Association="TradersMarketplaceDBModel.FK_ShoppingCart_Product">
             <End Role="Product" EntitySet="Products" />
-            <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ShoppingCart_User" Association="TradersMarketplaceDBModel.FK_ShoppingCart_User">
-            <End Role="User" EntitySet="Users" />
             <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
           </AssociationSet>
           </EntityContainer>
@@ -335,8 +365,8 @@
           <Property Type="Int32" Name="TownID" Nullable="false" />
           <NavigationProperty Name="Town" Relationship="TradersMarketplaceDBModel.FK_User_Town" FromRole="User" ToRole="Town" />
           <NavigationProperty Name="UserRoles" Relationship="TradersMarketplaceDBModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
-          <NavigationProperty Name="Products" Relationship="TradersMarketplaceDBModel.FK_Product_User" FromRole="User" ToRole="Product" />
           <NavigationProperty Name="ShoppingCarts" Relationship="TradersMarketplaceDBModel.FK_ShoppingCart_User" FromRole="User" ToRole="ShoppingCart" />
+          <NavigationProperty Name="Products" Relationship="TradersMarketplaceDBModel.FK_Product_User" FromRole="User" ToRole="Product" />
         </EntityType>
         <Association Name="FK_RolePermission_Permission">
           <End Type="TradersMarketplaceDBModel.Permission" Role="Permission" Multiplicity="1" />
@@ -408,6 +438,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ShoppingCart">
+          <Key>
+            <PropertyRef Name="ShoppingCartID" />
+          </Key>
+          <Property Type="Int32" Name="ShoppingCartID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ProductID" Nullable="false" />
+          <Property Type="Int32" Name="ProductQuantity" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="TradersMarketplaceDBModel.FK_ShoppingCart_User" FromRole="ShoppingCart" ToRole="User" />
+          <NavigationProperty Name="Product" Relationship="TradersMarketplaceDBModel.FK_ShoppingCart_Product" FromRole="ShoppingCart" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_ShoppingCart_User">
+          <End Type="TradersMarketplaceDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="TradersMarketplaceDBModel.ShoppingCart" Role="ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Type="Int32" Name="CategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="TradersMarketplaceDBModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductID" />
@@ -419,20 +480,23 @@
           <Property Type="String" Name="Username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="Price" Precision="18" Scale="2" />
           <Property Type="Int32" Name="Quantity" />
+          <Property Type="Int32" Name="CategoryID" />
+          <NavigationProperty Name="Category" Relationship="TradersMarketplaceDBModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="User" Relationship="TradersMarketplaceDBModel.FK_Product_User" FromRole="Product" ToRole="User" />
           <NavigationProperty Name="ShoppingCarts" Relationship="TradersMarketplaceDBModel.FK_ShoppingCart_Product" FromRole="Product" ToRole="ShoppingCart" />
         </EntityType>
-        <EntityType Name="ShoppingCart">
-          <Key>
-            <PropertyRef Name="ShoppingCartID" />
-          </Key>
-          <Property Type="Int32" Name="ShoppingCartID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="ProductID" Nullable="false" />
-          <Property Type="Int32" Name="ProductQuantity" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="TradersMarketplaceDBModel.FK_ShoppingCart_Product" FromRole="ShoppingCart" ToRole="Product" />
-          <NavigationProperty Name="User" Relationship="TradersMarketplaceDBModel.FK_ShoppingCart_User" FromRole="ShoppingCart" ToRole="User" />
-        </EntityType>
+        <Association Name="FK_Product_Category">
+          <End Type="TradersMarketplaceDBModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="TradersMarketplaceDBModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_User">
           <End Type="TradersMarketplaceDBModel.User" Role="User" Multiplicity="1" />
           <End Type="TradersMarketplaceDBModel.Product" Role="Product" Multiplicity="*" />
@@ -454,18 +518,6 @@
             </Principal>
             <Dependent Role="ShoppingCart">
               <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ShoppingCart_User">
-          <End Type="TradersMarketplaceDBModel.User" Role="User" Multiplicity="1" />
-          <End Type="TradersMarketplaceDBModel.ShoppingCart" Role="ShoppingCart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Username" />
-            </Principal>
-            <Dependent Role="ShoppingCart">
-              <PropertyRef Name="Username" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -542,19 +594,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="TradersMarketplaceDBModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ShoppingCarts">
             <EntityTypeMapping TypeName="TradersMarketplaceDBModel.ShoppingCart">
               <MappingFragment StoreEntitySet="ShoppingCart">
@@ -562,6 +601,28 @@
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="ShoppingCartID" ColumnName="ShoppingCartID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="TradersMarketplaceDBModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="TradersMarketplaceDBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -608,29 +669,40 @@
         <AssociationConnector Association="TradersMarketplaceDBModel.FK_UserRole_Role" >
           <ConnectorPoint PointX="10.75" PointY="3.875" />
           <ConnectorPoint PointX="11.125" PointY="3.5" />
-          <ConnectorPoint PointX="11.125" PointY="1.4926054218749987" />
-          <ConnectorPoint PointX="11.5" PointY="1.4926054218749987" />
+          <ConnectorPoint PointX="11.125" PointY="1.7401432291666659" />
+          <ConnectorPoint PointX="11.5" PointY="1.7401432291666659" />
         </AssociationConnector>
         <AssociationConnector Association="TradersMarketplaceDBModel.FK_UserRole_User" >
-          <ConnectorPoint PointX="6.25" PointY="1.0011528461538464" />
-          <ConnectorPoint PointX="6.625" PointY="0.62615284615384681" />
-          <ConnectorPoint PointX="6.625" PointY="0.375" />
-          <ConnectorPoint PointX="11.125" PointY="0.375" />
-          <ConnectorPoint PointX="11.5" PointY="0.75" />
+          <ConnectorPoint PointX="6.25" PointY="3.3362939453125" />
+          <ConnectorPoint PointX="7.541666666666667" PointY="3.3362939453124993" />
+          <ConnectorPoint PointX="7.708333333333333" PointY="3.3362939453125" />
+          <ConnectorPoint PointX="11.041666666666666" PointY="3.3362939453124993" />
+          <ConnectorPoint PointX="11.208333333333334" PointY="3.3362939453125" />
+          <ConnectorPoint PointX="11.59375" PointY="3.3362939453125" />
+          <ConnectorPoint PointX="11.59375" PointY="2.7302864583333317" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="TradersMarketplaceDBModel.Product" Width="1.5" PointX="7" PointY="1.5" Height="2.7494921874999996" />
         <EntityTypeShape EntityType="TradersMarketplaceDBModel.ShoppingCart" Width="1.5" PointX="9.25" PointY="0.75" Height="2.1725878906249996" />
+        <AssociationConnector Association="TradersMarketplaceDBModel.FK_ShoppingCart_User" >
+          <ConnectorPoint PointX="6.2257692307692309" PointY="1" />
+          <ConnectorPoint PointX="6.625" PointY="0.60076923076923094" />
+          <ConnectorPoint PointX="6.625" PointY="0.375" />
+          <ConnectorPoint PointX="8.875" PointY="0.375" />
+          <ConnectorPoint PointX="9.25" PointY="0.75" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="TradersMarketplaceDBModel.Category" Width="1.5" PointX="6.875" PointY="7.75" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="TradersMarketplaceDBModel.Product" Width="1.5" PointX="6.875" PointY="3.75" Height="3.1340950520833313" />
+        <AssociationConnector Association="TradersMarketplaceDBModel.FK_Product_Category" >
+          <ConnectorPoint PointX="7.625" PointY="7.75" />
+          <ConnectorPoint PointX="7.625" PointY="6.8840950520833317" />
+        </AssociationConnector>
         <AssociationConnector Association="TradersMarketplaceDBModel.FK_Product_User" >
-          <ConnectorPoint PointX="6.25" PointY="2.8170475260416663" />
-          <ConnectorPoint PointX="7" PointY="2.8170475260416663" />
+          <ConnectorPoint PointX="6.25" PointY="3.9420475260416663" />
+          <ConnectorPoint PointX="6.875" PointY="3.9420475260416663" />
         </AssociationConnector>
         <AssociationConnector Association="TradersMarketplaceDBModel.FK_ShoppingCart_Product" >
-          <ConnectorPoint PointX="8.5" PointY="2.2112939453125" />
-          <ConnectorPoint PointX="9.25" PointY="2.2112939453125" />
-        </AssociationConnector>
-        <AssociationConnector Association="TradersMarketplaceDBModel.FK_ShoppingCart_User" >
-          <ConnectorPoint PointX="6.25" PointY="1.250578923076924" />
-          <ConnectorPoint PointX="9.25" PointY="1.250578923076924" />
+          <ConnectorPoint PointX="7.625" PointY="3.75" />
+          <ConnectorPoint PointX="7.625" PointY="1.8675464453125008" />
+          <ConnectorPoint PointX="9.25" PointY="1.8675464453125008" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

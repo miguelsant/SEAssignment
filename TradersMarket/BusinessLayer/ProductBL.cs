@@ -9,6 +9,23 @@ namespace BusinessLayer
 {
     public class ProductBL
     {
+
+        public List<Product> getProductsByCategory(int catID)
+        {
+            return new ProductRepository().getProductsByCategory(catID);
+        }
+
+        public List<Category> getAllCategories()
+        {
+
+            return new ProductRepository().getAllCategories();
+        }
+
+        public Category getCategory(int id)
+        {
+            return new ProductRepository().getProductCategory(id);
+        }
+
         public void addProduct(Product p)
         {
             new ProductRepository().addProduct(p);
