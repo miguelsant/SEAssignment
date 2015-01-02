@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Common;
 using BusinessLayer;
 using TradersMarket.Models;
+using TradersMarket.ObserverPattern.Subject;
+using TradersMarket.ObserverPattern.Observer;
 
 namespace TradersMarket.Controllers
 {
@@ -13,6 +15,20 @@ namespace TradersMarket.Controllers
     {
         //
         // GET: /User/
+
+
+        public ActionResult SubscribeUser()
+        {
+            NewsLetter let = new NewsLetter();
+            ISubscribe user = new Buyer();
+            user.username = Session["Username"].ToString();
+            User u = new UserBL().getUserByUsername(Session["Username"].ToString());
+            user.email = u.Email;
+            let.Subscribe(user);
+            let.NotifySubscribers();
+            return View();
+        }
+
 
         public ActionResult ShowRegisteredUsers()
         {

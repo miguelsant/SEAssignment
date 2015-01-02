@@ -1,0 +1,4 @@
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\OrderingStates\bin\Debug\OrderingStates.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\OrderingStates\bin\Debug\OrderingStates.pdb
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\OrderingStates\obj\Debug\OrderingStates.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\OrderingStates\obj\Debug\OrderingStates.pdb

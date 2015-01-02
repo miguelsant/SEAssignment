@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BusinessLayer;
 using Common;
 using TradersMarket.Models;
+using TradersMarket.ObserverPattern.Subject;
 
 namespace TradersMarket.Controllers
 {
@@ -42,10 +43,12 @@ namespace TradersMarket.Controllers
             return View("Index");
         }
 
+
         public ActionResult RegisterNewUser()
         {
-            return View("Index");
+            return View();
         }
+
 
         [HttpPost]
         public ActionResult RegisterNewUser(RegisterUserModel mod)
@@ -65,6 +68,12 @@ namespace TradersMarket.Controllers
             }
             else
             {
+                if (mod.RoleID == 2)
+                {
+                    NewsLetter store = new NewsLetter();
+                    store.username = mod.username;
+                    Session["Stores"] = store;
+                }
                 @ViewBag.DisplayRegisterStatus = "Registration Successful";
                 return View();
             }

@@ -7,6 +7,8 @@ using TradersMarket.Models;
 using System.IO;
 using Common;
 using BusinessLayer;
+using TradersMarket.ObserverPattern.Subject;
+using TradersMarket.ObserverPattern.Observer;
 
 namespace TradersMarket.Controllers
 {
@@ -91,6 +93,7 @@ namespace TradersMarket.Controllers
 
         public ActionResult displayCategories()
         {
+
             return View();
         }
 
@@ -119,6 +122,7 @@ namespace TradersMarket.Controllers
             mod.Price = p.Price.ToString();
             mod.ImageURL = p.ProductImage;
             mod.Quantity = p.Quantity.ToString();
+            mod.Username = p.Username;
             return View(mod);
         }
 
@@ -139,18 +143,21 @@ namespace TradersMarket.Controllers
 
 
 
-
-            foreach (ShoppingCart c in userCarts)
+            if (userCarts.Count != 0)
             {
-                Product p = new ProductBL().getProductByID(c.ProductID);
-                p.Quantity = c.ProductQuantity;
-                p.Price = p.Price * p.Quantity;
-                products.Add(p);
+                foreach (ShoppingCart c in userCarts)
+                {
+                    Product p = new ProductBL().getProductByID(c.ProductID);
+                    p.Quantity = c.ProductQuantity;
+                    p.Price = p.Price * p.Quantity;
+                    products.Add(p);
+                }
+                return View(products.ToList());
             }
-
-
-
-            return View(products.ToList());
+            else
+            {
+                return RedirectToAction("displayCategories", "Product");
+            }
 
         }
 

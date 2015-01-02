@@ -19,7 +19,7 @@
         @Html.DisplayFor(model => model.prodName)
     </div>
 
-    <div class="display-label">prodDescription</div>
+    <div class="display-label">Description</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.prodDescription)
     </div>
@@ -34,8 +34,13 @@
         @Html.DisplayFor(model => model.Price)
     </div>
 
+    <div class="display-label">Sold By</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Username)
+    </div>
 
 </fieldset>
 <p>
     @Html.ActionLink("Add to Cart", "AddToCart", new { id = Model.prodID }, "Product") |
+    
 </p>

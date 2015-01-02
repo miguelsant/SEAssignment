@@ -21,6 +21,7 @@
                     <li>@Html.ActionLink("Products", "displayCategories", "Product")</li>
                     <li>@Html.ActionLink("Manage Products", "ManageProducts", "Product")</li>
                     <li>@Html.ActionLink("Cart", "displayProductsInCart", "Product")</li>
+                    <li>@Html.ActionLink("Orders", "ManageOrderState", "Order")</li>
                     @{
                         //if the user is logged in
                         if(Session["Username"]!= null)

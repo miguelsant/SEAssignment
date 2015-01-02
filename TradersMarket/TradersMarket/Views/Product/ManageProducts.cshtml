@@ -6,7 +6,18 @@
 <h2>Select :</h2>
 
 <table>
-<tr><td>@Html.ActionLink("Delete Products", "DeleteProduct","Product")</td></tr>
-<tr><td>@Html.ActionLink("Edit Products", "displayProducts", "Product")</td></tr>
-<tr><td>@Html.ActionLink("Add Products", "AddProduct","Product")</td></tr>
+@{
+     if(Session["Username"]!= null)
+      {
+       string username = Session["Username"].ToString();
+       //check if the user is an admin
+         string role = new BusinessLayer.UserBL().getUserRole(username);
+         if (role == "Admin")
+         {
+            <tr><td>@Html.ActionLink("Delete Products", "DeleteProduct", "Product")</td></tr>
+            <tr><td>@Html.ActionLink("Edit Products", "displayProducts", "Product")</td></tr>
+         }
+       }
+}
+<tr><td>@Html.ActionLink("Add Products", "AddProduct", "Product")</td></tr>
 </table>

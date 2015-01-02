@@ -11,3 +11,5 @@ C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\DataAccess.
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\obj\Debug\TradersMarket.csprojResolveAssemblyReference.cache
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\obj\Debug\TradersMarket.dll
 C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\obj\Debug\TradersMarket.pdb
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\OrderingStates.dll
+C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\OrderingStates.pdb

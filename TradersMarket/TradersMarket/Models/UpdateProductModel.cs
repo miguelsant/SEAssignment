@@ -46,6 +46,10 @@ namespace TradersMarket.Models
         [Display(Name = "ImageURL")]
         public string ImageURL { get; set; }
 
+        [DataType(DataType.Text)]
+        [Display(Name = "User")]
+        public string Username { get; set; }
+
 
         public List<SelectListItem> ListCategory { get; set; }
 
