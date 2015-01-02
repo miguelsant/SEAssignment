@@ -54,7 +54,7 @@ namespace TradersMarket.Controllers
         public ActionResult RegisterNewUser(RegisterUserModel mod)
         {
             UserBL usbl = new UserBL();
-            Enum registerstatus = usbl.addUser(mod.username, mod.password, mod.email, mod.name, mod.surname, mod.mobileNumber, mod.TownID,mod.RoleID);
+            Enum registerstatus = usbl.addUser(mod.username, mod.password, mod.email, mod.name, mod.surname, mod.mobileNumber, mod.TownID,mod.RoleID,mod.Subscribe);
 
             if (registerstatus.ToString() == "UsernameExists")
             {
@@ -68,12 +68,7 @@ namespace TradersMarket.Controllers
             }
             else
             {
-                if (mod.RoleID == 2)
-                {
-                    NewsLetter store = new NewsLetter();
-                    store.username = mod.username;
-                    Session["Stores"] = store;
-                }
+
                 @ViewBag.DisplayRegisterStatus = "Registration Successful";
                 return View();
             }

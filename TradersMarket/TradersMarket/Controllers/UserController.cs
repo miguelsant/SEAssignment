@@ -16,17 +16,11 @@ namespace TradersMarket.Controllers
         //
         // GET: /User/
 
+        
 
         public ActionResult SubscribeUser()
         {
-            NewsLetter let = new NewsLetter();
-            ISubscribe user = new Buyer();
-            user.username = Session["Username"].ToString();
-            User u = new UserBL().getUserByUsername(Session["Username"].ToString());
-            user.email = u.Email;
-            let.Subscribe(user);
-            let.NotifySubscribers();
-            return View();
+            return RedirectToAction("Index","Home");
         }
 
 
@@ -155,7 +149,7 @@ namespace TradersMarket.Controllers
             mod.surname = u.Surname;
             mod.email = u.Email;
             mod.mobileNumber = u.MobileNumber;
-
+            mod.Subscribe = Convert.ToBoolean(u.isSubscribed);
             mod.ListTowns = townList;
             mod.ListType = roleList;
             
@@ -171,6 +165,7 @@ namespace TradersMarket.Controllers
             user.Email = mod.email;
             user.MobileNumber = mod.mobileNumber;
             user.Name = mod.name;
+            user.isSubscribed = mod.Subscribe;
             user.Surname = mod.surname;
             string userTown = Request.Form["TownDDL"];
             string userRole = Request.Form["TypeDDL"];
