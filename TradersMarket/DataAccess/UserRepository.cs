@@ -16,10 +16,19 @@ namespace DataAccess
 
         }
 
+
+        public List<User> getSubsribedUsers()
+        {
+            return (from users in MarketplaceEntity.Users
+                    where users.isSubscribed == true
+                    select users).ToList();
+
+        }
+
         public UserRole getUserRole(int userroleid)
         {
             UserRole usr = (from user in MarketplaceEntity.UserRoles
-                            where user.RoleID == userroleid
+                            where user.UserRoleID == userroleid
                             select user).SingleOrDefault();
             return usr;
                             

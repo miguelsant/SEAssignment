@@ -17,7 +17,16 @@
             <tr><td>@Html.ActionLink("Delete Products", "DeleteProduct", "Product")</td></tr>
             <tr><td>@Html.ActionLink("Edit Products", "displayProducts", "Product")</td></tr>
          }
-       }
+         else if(role == "Buyer")
+         {
+             
+             
+         }
+         else if(role== "Seller")
+         {
+            <tr><td>@Html.ActionLink("Edit Products", "GetSellerProducts",new { username = username }, "Product")</td></tr>
+         }
+      }
 }
 <tr><td>@Html.ActionLink("Add Products", "AddProduct", "Product")</td></tr>
 </table>

@@ -20,6 +20,15 @@ namespace DataAccess
 
         }
 
+
+        public List<Product> getSellerProducts(string username)
+        {
+            List<Product> p = (from prod in MarketplaceEntity.Products
+                               where prod.Username == username
+                               select prod).ToList();
+            return p;
+        }
+
         public List<Category> getAllCategories()
         {
             return (from cat in MarketplaceEntity.Categories
@@ -66,7 +75,6 @@ namespace DataAccess
 
         public void deleteProduct(Product p)
         {
-
             Product productToDelete = getProductByID(p.ProductID);
             MarketplaceEntity.DeleteObject(productToDelete);
             MarketplaceEntity.SaveChanges();

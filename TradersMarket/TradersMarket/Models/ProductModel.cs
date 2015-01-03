@@ -14,14 +14,14 @@ namespace TradersMarket.Models
         public string prodName { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
+        [StringLength(50, ErrorMessage = "Description length must be between 8 and 50.", MinimumLength = 8)]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Description")]
         public string prodDescription { get; set; }
 
 
         [Required]
-        [StringLength(50, ErrorMessage = "Price must be at least 1", MinimumLength = 1)]
+        [StringLength(5, ErrorMessage = "*", MinimumLength = 1)]
         [DataType(DataType.Text)]
         [Display(Name = "Price")]
         public string Price { get; set; }
@@ -29,7 +29,7 @@ namespace TradersMarket.Models
         public int CategoryID { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Must have at least 1 quantity", MinimumLength = 1)]
+        [StringLength(3, ErrorMessage = "Must have at least 1 quantity", MinimumLength = 1)]
         [DataType(DataType.Text)]
         [Display(Name = "Quantity")]
         public string Quantity { get; set; }

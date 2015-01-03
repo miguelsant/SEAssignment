@@ -20,6 +20,7 @@ namespace TradersMarket.ObserverPattern.Subject
         public void Unsubscribe(ISubscribe buyer)
         {
             subscribedUsers.Remove(buyer);
+
         }
 
         public void NotifySubscribers()

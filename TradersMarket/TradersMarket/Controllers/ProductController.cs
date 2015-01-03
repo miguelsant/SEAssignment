@@ -23,6 +23,15 @@ namespace TradersMarket.Controllers
             return View();
         }
 
+
+
+        public ActionResult GetSellerProducts(string username)
+        {
+
+            IEnumerable<Product> userprods = new ProductBL().getSellerProducts(username);
+            return View(userprods.ToList());
+
+        }
         
         public ActionResult AddProduct()
         {
@@ -85,6 +94,19 @@ namespace TradersMarket.Controllers
         {
             ProductBL bl = new ProductBL();
             Product p = bl.getProductByID(id);
+
+            ShoppingCartBL shopCart = new ShoppingCartBL();
+
+            List<ShoppingCart> carts = shopCart.getCartsWithProduct(p.ProductID);
+
+            if (carts.Count != 0)
+            {
+                foreach (ShoppingCart c in carts)
+                {
+                    shopCart.deleteShoppingCart(c);
+                }
+
+            }
             bl.deleteProduct(p);
             return RedirectToAction("DeleteProduct","Product");
         }
@@ -371,7 +393,7 @@ namespace TradersMarket.Controllers
                 new ProductBL().updateProduct(prod);
             }
 
-            return RedirectToAction("editProduct", "Product");
+            return RedirectToAction("ManageProducts", "Product");
 
 
         }

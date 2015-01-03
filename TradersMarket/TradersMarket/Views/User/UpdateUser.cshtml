@@ -63,6 +63,14 @@
             @Html.ValidationMessageFor(model => model.mobileNumber)
         </div>
 
+        <div class="editor-field">
+        @Html.Label("Subscribe to newsletter?") 
+        </div>
+        
+        <div class="editor-field">
+        @Html.CheckBoxFor(model => model.Subscribe)
+        </div>
+
          <div class="editor-field">
            @Html.DropDownList("TownDDL",Model.ListTowns)
         </div>

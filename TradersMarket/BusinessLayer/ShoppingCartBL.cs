@@ -13,10 +13,20 @@ namespace BusinessLayer
             return new ShoppingCartRepository().getUserCarts(username);
         }
 
+        public void deleteShoppingCart(ShoppingCart c)
+        {
+            new ShoppingCartRepository().deleteShoppingCart(c);
+        }
+
         public void CreateCart(ShoppingCart x)
         {
              new ShoppingCartRepository().addShoppingCart(x);
 
+        }
+
+        public List<ShoppingCart> getCartsWithProduct(int id)
+        {
+            return new ShoppingCartRepository().getCartsWithProduct(id);
         }
 
         public void updateCart(ShoppingCart c)

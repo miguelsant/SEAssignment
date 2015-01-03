@@ -15,6 +15,12 @@ namespace BusinessLayer
             return new ProductRepository().getProductsByCategory(catID);
         }
 
+
+        public List<Product> getSellerProducts(string username)
+        {
+            return new ProductRepository().getSellerProducts(username);
+        }
+
         public List<Category> getAllCategories()
         {
 

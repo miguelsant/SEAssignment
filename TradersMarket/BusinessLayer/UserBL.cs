@@ -17,6 +17,11 @@ namespace BusinessLayer
 
         }
 
+        public List<User> getSubscribedUsers()
+        {
+            return new UserRepository().getSubsribedUsers();
+        }
+
         public void UpdateUserRole(UserRole r)
         {
             new UserRepository().UpdateUserRole(r);
@@ -71,7 +76,7 @@ namespace BusinessLayer
             return new UserRepository().getNonAdminRoles();
         }
 
-        public Enum addUser(string username,string password, string email, string name, string surname,string mobileNumber, int townID,int roleID)
+        public Enum addUser(string username,string password, string email, string name, string surname,string mobileNumber, int townID,int roleID,bool subscribe)
         {
             UserRepository userrep = new UserRepository();
 
@@ -98,6 +103,7 @@ namespace BusinessLayer
                     u.Email = email;
                     u.Name = name;
                     u.Surname = surname;
+                    u.isSubscribed = subscribe;
                     u.MobileNumber = mobileNumber.ToString();
                     u.TownID = townID;
                     UserRepository rep = new UserRepository();

@@ -23,6 +23,8 @@
         Text = x.RoleName.ToString(),
         Value = x.RoleID.ToString(),
     }).ToList();
+    
+    
 
    }
 
@@ -80,6 +82,14 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.mobileNumber)
             @Html.ValidationMessageFor(model => model.mobileNumber)
+        </div>
+        
+        <div class="editor-field">
+        @Html.Label("Subscribe to newsletter?") 
+        </div>
+        
+        <div class="editor-field">
+        @Html.CheckBoxFor(model => model.Subscribe)
         </div>
 
         <div class="editor-label">

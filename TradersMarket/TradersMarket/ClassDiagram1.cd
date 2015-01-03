@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TradersMarket.ObserverPattern.Observer.Buyer">
+    <Position X="1.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAEAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>ObserverPattern\Observer\Buyer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TradersMarket.ObserverPattern.Subject.NewsLetter">
+    <Position X="3.25" Y="0.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAQACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ObserverPattern\Subject\NewsLetter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TradersMarket.ObserverPattern.Observer.ISubscribe">
+    <Position X="1.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>ObserverPattern\Observer\ISubscribe.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

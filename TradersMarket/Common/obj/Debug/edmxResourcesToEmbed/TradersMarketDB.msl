@@ -46,19 +46,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="TradersMarketplaceDBModel.User">
-        <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="TownID" ColumnName="TownID" />
-          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="UserRoles">
       <EntityTypeMapping TypeName="TradersMarketplaceDBModel.UserRole">
         <MappingFragment StoreEntitySet="UserRole">
@@ -97,6 +84,20 @@
           <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
           <ScalarProperty Name="ProductName" ColumnName="ProductName" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="TradersMarketplaceDBModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="isSubscribed" ColumnName="isSubscribed" />
+          <ScalarProperty Name="TownID" ColumnName="TownID" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

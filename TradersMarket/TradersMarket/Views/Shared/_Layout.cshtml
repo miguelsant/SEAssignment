@@ -18,24 +18,37 @@
                 <ul id="menu">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Products", "displayCategories", "Product")</li>
-                    <li>@Html.ActionLink("Manage Products", "ManageProducts", "Product")</li>
-                    <li>@Html.ActionLink("Cart", "displayProductsInCart", "Product")</li>
-                    <li>@Html.ActionLink("Orders", "ManageOrderState", "Order")</li>
                     @{
-                        //if the user is logged in
-                        if(Session["Username"]!= null)
+                        if (Session["Username"] != null)
                         {
-                        string username = Session["Username"].ToString();
-                        //check if the user is an admin
-                        string role = new BusinessLayer.UserBL().getUserRole(username);
+                            string username = Session["Username"].ToString();
 
-                        if (role == "Admin")
-                        {
-                        <li>@Html.ActionLink("User Management", "ShowRegisteredUsers", "User")</li>
-                        }
+                            string role = new BusinessLayer.UserBL().getUserRole(username);
+
+                            if (role == "Buyer")
+                            {
+                               <li>@Html.ActionLink("Products", "displayCategories", "Product")</li>
+                               <li>@Html.ActionLink("Cart", "displayProductsInCart", "Product")</li>
+                            }
+                            else if(role == "Seller")
+                            {
+                                <li>@Html.ActionLink("Manage Products", "ManageProducts", "Product")</li>
+                        
+                            }
+                            else if(role == "Admin")
+                            {
+                                <li>@Html.ActionLink("User Management", "ShowRegisteredUsers", "User")</li>
+                                <li>@Html.ActionLink("News Letter", "NewsletterPage", "Order")</li>
+                                <li>@Html.ActionLink("Manage Products", "ManageProducts", "Product")</li>
+                                <li>@Html.ActionLink("Orders", "ManageOrderState", "Order")</li>
+                            }
+
                         }
                     }
+
+                    
+                    
+                    
                     
                 </ul>
             </div>
