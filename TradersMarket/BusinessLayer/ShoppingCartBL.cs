@@ -24,6 +24,16 @@ namespace BusinessLayer
 
         }
 
+        public ShoppingCart getCartsWithUsernameAndID(string username, int id)
+        {
+            return new ShoppingCartRepository().getShoppingCartByUsernameAndID(username, id);
+        }
+
+        public ShoppingCart getCartWithID(int id)
+        {
+            return new ShoppingCartRepository().getCartWithID(id);
+        }
+
         public List<ShoppingCart> getCartsWithProduct(int id)
         {
             return new ShoppingCartRepository().getCartsWithProduct(id);

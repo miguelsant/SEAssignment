@@ -32,6 +32,14 @@ namespace DataAccess
         }
 
 
+        public ShoppingCart getShoppingCartByUsernameAndID(string username, int prodID)
+        {
+            return (from carts in MarketplaceEntity.ShoppingCarts
+                    where carts.Username == username && carts.ProductID == prodID
+                    select carts).SingleOrDefault();
+
+        }
+
         public ShoppingCart getCartWithID(int id)
         {
             return (from carts in MarketplaceEntity.ShoppingCarts

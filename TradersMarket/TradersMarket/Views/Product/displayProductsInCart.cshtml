@@ -24,8 +24,7 @@
     <div class = "OuterContainer">
     <div class="ImageContainer"><img src="@Html.DisplayFor(modelItem => prod.ProductImage)" alt="" height='145px' width='145px'/></div>
     <div class="ProdNameContainer">@Html.DisplayFor(modelItem => prod.ProductName)</div>
-    <div class="ProdQuantityContainer">@Html.ActionLink("Qty :" +prod.Quantity.ToString(), "editQuantity", "Product", new { id = prod.ProductID }, "Product")</div>
-    <div class="ProdQuantityContainer">Qty: @Html.DisplayFor(modelItem => prod.Quantity)</div>
+    <div class="ProdQuantityContainer">@Html.ActionLink("Qty :" + prod.Quantity.ToString(), "editProductQTY", "Product", new { productID = prod.ProductID }, "Product")</div>
     <div class="PriceContainer">€ @Html.DisplayFor(modelItem => prod.Price)</div>
     <div class="DescriptionProd">@Html.DisplayFor(modelItem => prod.ProductDescription)</div>
     </div>

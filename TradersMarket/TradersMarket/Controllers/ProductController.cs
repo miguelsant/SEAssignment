@@ -18,6 +18,7 @@ namespace TradersMarket.Controllers
         // GET: /Product/
         public static int prodID = 0;
         public static string imageURL;
+        public static int cartShopID;
         public ActionResult Index()
         {
             return View();
@@ -149,12 +150,64 @@ namespace TradersMarket.Controllers
         }
 
 
-        public ActionResult editProductQTY()
+        public ActionResult editProductQTY(int productID)
         {
-            return View();
+            try
+            {
+                string username = Session["Username"].ToString();
+                ShoppingCart cart = new ShoppingCartBL().getCartsWithUsernameAndID(username, productID);
+                ProductQtyModel mod = new ProductQtyModel();
+                mod.CartID = cart.ShoppingCartID.ToString();
+                mod.Quantity = cart.ProductQuantity.ToString();
+                cartShopID = cart.ShoppingCartID;
+                return View(mod);
+            }
+            catch
+            {
+                return RedirectToAction("Index","Home");
+            }
+
+
         }
 
+        [HttpPost]
+        public ActionResult editProductQTY(ProductQtyModel model)
+        {
+            
 
+
+            try
+            {
+                model.CartID = cartShopID.ToString(); 
+                ShoppingCartBL shopbl = new ShoppingCartBL();
+                ShoppingCart cart = shopbl.getCartWithID(Convert.ToInt32(model.CartID));
+                Product p = new ProductBL().getProductByID(cart.ProductID);
+
+                if (Convert.ToInt32(model.Quantity) == 0)
+                {
+                    shopbl.deleteShoppingCart(cart);
+                }
+                else
+                {
+                    if (p.Quantity >= Convert.ToInt32(model.Quantity))
+                    {
+                        cart.ProductQuantity = Convert.ToInt32(model.Quantity);
+                        shopbl.updateCart(cart);
+                    }
+                    else
+                    {
+
+                    }
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            return RedirectToAction("displayProductsInCart", "Product");
+        }
 
         public ActionResult displayProductsInCart()
         {

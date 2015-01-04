@@ -64,12 +64,28 @@ namespace DataAccess
             return p;
         }
 
+        public Product getProductByName(string name)
+        {
+            Product p = (from prod in MarketplaceEntity.Products
+                         where prod.ProductName == name
+                         select prod).SingleOrDefault();
+
+            return p;
+        }
 
         public void updateProduct(Product prodToUpdate)
         {
-            MarketplaceEntity.Products.Attach(getProductByID(prodToUpdate.ProductID));
-            MarketplaceEntity.Products.ApplyCurrentValues(prodToUpdate);
-            MarketplaceEntity.SaveChanges();
+            try
+            {
+                MarketplaceEntity.Products.Attach(getProductByID(prodToUpdate.ProductID));
+                MarketplaceEntity.Products.ApplyCurrentValues(prodToUpdate);
+                MarketplaceEntity.SaveChanges();
+            }
+            catch
+            {
+                MarketplaceEntity.Products.ApplyCurrentValues(prodToUpdate);
+                MarketplaceEntity.SaveChanges();
+            }
 
         }
 
