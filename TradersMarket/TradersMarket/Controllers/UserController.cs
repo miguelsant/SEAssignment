@@ -185,9 +185,20 @@ namespace TradersMarket.Controllers
         
         public ActionResult DeleteUser(string username)
         {
+            ShoppingCartBL shopbl = new ShoppingCartBL();
+            List<ShoppingCart> userCarts = shopbl.getUserCarts(username);
+
+            if (userCarts.Count > 0)
+            {
+                foreach (ShoppingCart c in userCarts)
+                {
+                    shopbl.deleteShoppingCart(c);
+                }
+            }
+
             new UserBL().DeleteUser(username);
             @ViewBag.StatusMessageDelete = "User Successfully deleted";
-            return View("ShowRegisteredUsersPost");
+            return RedirectToAction("ShowRegisteredUsers","User");
         }
     }
 }
