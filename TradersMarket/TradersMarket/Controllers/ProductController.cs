@@ -109,7 +109,7 @@ namespace TradersMarket.Controllers
 
             }
             bl.deleteProduct(p);
-            return RedirectToAction("DeleteProduct","Product");
+            return RedirectToAction("ManageProducts", "Product");
         }
 
 
@@ -189,14 +189,17 @@ namespace TradersMarket.Controllers
                 }
                 else
                 {
-                    if (p.Quantity >= Convert.ToInt32(model.Quantity))
+                    if (Convert.ToInt32(model.Quantity) > 0)
                     {
-                        cart.ProductQuantity = Convert.ToInt32(model.Quantity);
-                        shopbl.updateCart(cart);
-                    }
-                    else
-                    {
+                        if (p.Quantity >= Convert.ToInt32(model.Quantity))
+                        {
+                            cart.ProductQuantity = Convert.ToInt32(model.Quantity);
+                            shopbl.updateCart(cart);
+                        }
+                        else
+                        {
 
+                        }
                     }
                 }
 

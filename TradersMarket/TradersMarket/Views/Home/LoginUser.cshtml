@@ -1,7 +1,7 @@
 ﻿@model TradersMarket.Models.LoginUserModel
 
 @{
-    ViewBag.Title = "LoginUser";
+    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +13,7 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>LoginUserModel</legend>
+        <legend>Login</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.username)
