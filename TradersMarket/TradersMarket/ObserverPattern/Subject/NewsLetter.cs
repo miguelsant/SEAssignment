@@ -12,14 +12,14 @@ namespace TradersMarket.ObserverPattern.Subject
         private IList<ISubscribe> subscribedUsers = new List<ISubscribe>();
         
 
-        public void Subscribe(ISubscribe buyer)
+        public void Subscribe(ISubscribe observer)
         {
-            subscribedUsers.Add(buyer);
+            subscribedUsers.Add(observer);
         }
 
-        public void Unsubscribe(ISubscribe buyer)
+        public void Unsubscribe(ISubscribe observer)
         {
-            subscribedUsers.Remove(buyer);
+            subscribedUsers.Remove(observer);
 
         }
 

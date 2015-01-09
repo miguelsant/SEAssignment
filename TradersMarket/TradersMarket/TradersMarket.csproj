@@ -82,6 +82,7 @@
     <Compile Include="Models\UpdateUserModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="ObserverPattern\Observer\Buyer.cs" />
+    <Compile Include="ObserverPattern\Observer\EmailSubscriber.cs" />
     <Compile Include="ObserverPattern\Observer\ISubscribe.cs" />
     <Compile Include="ObserverPattern\Subject\NewsLetter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

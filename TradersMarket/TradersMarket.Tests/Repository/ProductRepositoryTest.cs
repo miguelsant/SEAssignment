@@ -12,9 +12,22 @@ namespace TradersMarket.Tests.Repository
     [TestClass]
     public class ProductRepositoryTest
     {
+        TradersMarketplaceDBEntities marketPlaceEntity = new TradersMarketplaceDBEntities();
+        List<Product> allProducts = new List<Product>();
+
+        [TestInitialize]
+        public void InitializeTest()
+        {
+            allProducts = marketPlaceEntity.Products.ToList();
+
+        }
+    
+
+
         [TestMethod]
         public void CreateProduct()
         {
+            
             ProductRepository prodRep = new ProductRepository();
             
             List<Category> cats = prodRep.getAllCategories();
@@ -30,11 +43,15 @@ namespace TradersMarket.Tests.Repository
             p.Username = getallUser[1].Username;
             p.ProductImage = @"/Images/default.jpg";
             p.ProductDescription = "test description";
+            //add newly created product to the list created here
+            allProducts.Add(p);
 
+            //repository method
             prodRep.addProduct(p);
-            Product addedP = prodRep.getProductByName(p.ProductName);
-            Assert.IsNotNull(addedP);
-            
+            //------------------
+
+            AreListsEqual(allProducts, marketPlaceEntity.Products.ToList());
+            prodRep.deleteProduct(p);
         }
 
         [TestMethod]
@@ -106,6 +123,7 @@ namespace TradersMarket.Tests.Repository
             Product deletedProd = prodRep.getProductByName(p.ProductName);
             Assert.IsNull(deletedProd);
 
+
         }
 
         [TestMethod]
@@ -133,8 +151,20 @@ namespace TradersMarket.Tests.Repository
 
             Product productAdded = prodRep.getProductByName(p.ProductName);
             Assert.IsNotNull(productAdded);
+
+             //--------------------------------------------------------------------------------
+            //Delete product once created so that they dont clutter website
+            prodRep.deleteProduct(productAdded);
         }
 
+        public void AreListsEqual<T>(List<T> expected, List<T> actualProduct)
+        {
+
+            for (int i = 0; i== actualProduct.Count -1 ; i++)
+            {
+                Assert.AreEqual(expected.ElementAt(i), actualProduct.ElementAt(i));
+            }
+        }
 
     }
 }

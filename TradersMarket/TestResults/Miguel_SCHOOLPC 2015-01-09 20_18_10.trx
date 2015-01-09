@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="197e4f11-f079-4571-92d7-f7e29ad94dde" name="Miguel@SCHOOLPC 2015-01-09 20:18:10" runUser="SCHOOLPC\Miguel" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="9fcf633a-d283-4e53-b457-66924b613df2">
+    <Deployment runDeploymentRoot="Miguel_SCHOOLPC 2015-01-09 20_18_10">
+      <DeploymentItem filename="C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\DataAccess\bin\Debug\DataAccess.dll" />
+      <DeploymentItem filename="C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\Common\bin\Debug\Common.dll" />
+      <DeploymentItem filename="C:\Users\Miguel\Desktop\SEAssignment\TradersMarket\TradersMarket\bin\TradersMarket.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2015-01-09T20:18:10.7592770+01:00" queuing="2015-01-09T20:18:11.8530811+01:00" start="2015-01-09T20:18:11.9155837+01:00" finish="2015-01-09T20:18:13.0875152+01:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="GetRoleWithNegativeTest" storage="c:\users\miguel\desktop\seassignment\tradersmarket\tradersmarket.tests\bin\debug\tradersmarket.tests.dll" id="da355fac-8d84-c5b6-fc63-b3dd46547821">
+      <Execution id="a9122c75-796a-4b2a-8c56-5312a15e0ec0" />
+      <TestMethod codeBase="C:/Users/Miguel/Desktop/SEAssignment/TradersMarket/TradersMarket.Tests/bin/Debug/TradersMarket.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TradersMarket.Tests.RoleRepositoryTest, TradersMarket.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetRoleWithNegativeTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="da355fac-8d84-c5b6-fc63-b3dd46547821" executionId="a9122c75-796a-4b2a-8c56-5312a15e0ec0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="a9122c75-796a-4b2a-8c56-5312a15e0ec0" testId="da355fac-8d84-c5b6-fc63-b3dd46547821" testName="GetRoleWithNegativeTest" computerName="SCHOOLPC" duration="00:00:00.5160949" startTime="2015-01-09T20:18:11.9624616+01:00" endTime="2015-01-09T20:18:13.0093859+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a9122c75-796a-4b2a-8c56-5312a15e0ec0">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method TradersMarket.Tests.RoleRepositoryTest.GetRoleWithNegativeTest did not throw expected exception System.ArgumentOutOfRangeException.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

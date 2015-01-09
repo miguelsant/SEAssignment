@@ -31,17 +31,39 @@ namespace TradersMarket.Controllers
         {
             NewsLetter letter = new NewsLetter();
 
-            List<User> getUsers = new UserBL().getSubscribedUsers();
+            EmailSubscriber emailSubscribers = new EmailSubscriber();
 
-            foreach(User u in getUsers)
+            List<User> subscribedUsers = new List<User>();
+
+            subscribedUsers = new UserBL().getAllUsers();
+
+            foreach (User u in subscribedUsers)
             {
-                Buyer user = new Buyer();
-                user.email = u.Email;
-                user.username = u.Username;
-                letter.Subscribe(user);
+                if (u.isSubscribed == false)
+                {
+                    subscribedUsers.Remove(u);
+                }
+                else
+                {
+                    emailSubscribers.userEmails.Add(u.Email);
+                }
             }
 
+            letter.Subscribe(emailSubscribers);
             letter.NotifySubscribers();
+            
+
+            //List<User> getUsers = new UserBL().getSubscribedUsers();
+
+            //foreach(User u in getUsers)
+            //{
+            //    Buyer user = new Buyer();
+            //    user.email = u.Email;
+            //    user.username = u.Username;
+            //    letter.Subscribe(user);
+            //}
+
+            //letter.NotifySubscribers();
 
             return RedirectToAction("Index","Home");
         }
